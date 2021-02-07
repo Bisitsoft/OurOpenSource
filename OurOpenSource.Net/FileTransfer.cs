@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OurOpenSource.Net
 {
-    class FileTransfer
+    public class FileTransfer
     {
     }
 }
