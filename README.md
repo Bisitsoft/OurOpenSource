@@ -5,6 +5,8 @@ A powerful library.
 
 ### ~OurOpenSource~
 
+根。
+
  #### ~OurOpenSource.Utility~
  
  一堆杂货。
@@ -15,8 +17,14 @@ A powerful library.
 
 ### ~OurOpenSource.Security~
 
+一个方便的安全库。
+
 **！注意！该库引用了第三方库`Newtonsoft.Json`。**
+
+ #### ~OurOpenSource.Security.Cryptography~
+ 
+ 加密算法。
 
  #### ~OurOpenSource.Security.UniqueDevice~
  
- 一个用于获取设备识别信息的库。
+ 用于获取设备识别信息。
