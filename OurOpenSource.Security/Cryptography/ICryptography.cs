@@ -1,6 +1,6 @@
 ﻿namespace OurOpenSource.Security.Cryptography
 {
-    public interface ICrypt
+    public interface ICryptography
     {
         byte[] Encrypt(byte[] data);
         byte[] Decrypt(byte[] encryptedData);

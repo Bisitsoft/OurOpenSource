@@ -1,6 +1,6 @@
 ﻿namespace OurOpenSource.Security.Cryptography
 {
-    public interface ICryptData
+    public interface ICryptographyData
     {
         public byte[] Data { get; }
         public byte[] EcryptedData { get; }
