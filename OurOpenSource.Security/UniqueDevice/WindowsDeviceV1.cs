@@ -10,6 +10,8 @@ using Microsoft.Win32;
 
 using Newtonsoft.Json;
 
+using OurOpenSource.Utility;
+
 namespace OurOpenSource.Security.UniqueDevice
 {
     //参考文献：https://blog.csdn.net/xyxdu/article/details/88196240
@@ -291,8 +293,6 @@ namespace OurOpenSource.Security.UniqueDevice
             return SHA256.Create().ComputeHash(Encoding.ASCII.GetBytes(sb.ToString()));
         }
 
-
-
         private void InitialiseWinMachineV1(string hostName, Guid smBIOSUUID, Guid machineGUID, byte[] macAddressesHashCode, string productID, byte[] cpuProcessorIDsHashCode = null, IPAddress ipAddress = null)
         {
             if (!CheckMacAddressesHashCode(macAddressesHashCode))
@@ -324,25 +324,11 @@ namespace OurOpenSource.Security.UniqueDevice
                 { "HostName", winMachineInfo.hostName },
                 { "SMBIOSUUID", winMachineInfo.smBIOSUUID.ToString() },
                 { "MachineGuid", winMachineInfo.machineGUID.ToString() },
-                { "MACAddressesHashCode", BytesToString(winMachineInfo.macAddressesHashCode) },
+                { "MACAddressesHashCode", Converters.BytesToString(winMachineInfo.macAddressesHashCode) },
                 { "ProductId", winMachineInfo.productID },
-                { "CPUProcessorIDsHashCode", winMachineInfo.cpuProcessorIDsHashCode == null ? null : BytesToString(winMachineInfo.cpuProcessorIDsHashCode) },
+                { "CPUProcessorIDsHashCode", winMachineInfo.cpuProcessorIDsHashCode == null ? null : Converters.BytesToString(winMachineInfo.cpuProcessorIDsHashCode) },
                 { "IPAddress", winMachineInfo.ipAddress.ToString() }
             };
-        }
-
-        #warning 需要转移出类
-        private static string BytesToString(byte[] bytes)
-        {
-            int i;
-            StringBuilder r = new StringBuilder(bytes.Length * 2);
-
-            for (i = 0; i < bytes.Length; i++)
-            {
-                r.Append(string.Format("{0:X2}", bytes[i]));
-            }
-
-            return r.ToString();
         }
 
         public WindowsDeviceV1(string hostName, Guid smBIOSUUID, Guid machineGUID, byte[] macAddressesHashCode, string productID, byte[] cpuProcessorIDsHashCode = null, IPAddress ipAddress = null)
