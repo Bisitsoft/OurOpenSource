@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OurOpenSource.Security.Cryptography
 {
-    public class SM2// : ICryptography
+    public class SM2 : ICryptography
     {
 
     }

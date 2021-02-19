@@ -40,7 +40,7 @@ A powerful library.
         <td rowspan="1"><div style="width:220px"></div></td>
         <td rowspan="3">
             <div style="width:130px">
-                <a href="https://www.newtonsoft.com/json">Newtonsoft.Json;</a><br/>
+                <a href="https://www.newtonsoft.com/json">Newtonsoft.Json</a>;<br/>
                 <a href="https://www.bouncycastle.org/">BouncyCastle</a>(<a href="https://gitdub.com/bcgit/bc-csharp">BouncyCastle.NetCoreSdk</a>);<br/>
                 <a href="https://gitdub.com/stoneson/Vive.Crypto">Vive.Crypto</a>
             </div>
