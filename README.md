@@ -27,11 +27,23 @@ A powerful library.
         <td rowspan="1"><div style="width:220px"></div></td>
     </tr>
     <tr align="left">
-        <td rowspan="1"><div style="width:120px">OurOpenSource.Net.dll</div></td>
+        <td rowspan="1"><div style="width:120px">OurOpenSource.Data.dll</div></td>
+        <td rowspan="1"><div style="width:120px">OurOpenSource.Data</div></td>
+        <td rowspan="1"><div style="width:220px">一些数据类型</div></td>
+        <td rowspan="1"><div style="width:220px"></div></td>
+        <td rowspan="1"><div style="width:130px">/</div></td>
+    </tr>
+    <tr align="left">
+        <td rowspan="2"><div style="width:120px">OurOpenSource.Net.dll</div></td>
         <td rowspan="1"><div style="width:120px">OurOpenSource.Net</div></td>
         <td rowspan="1"><div style="width:220px">一个方便的网络库</div></td>
         <td rowspan="1"><div style="width:220px"></div></td>
-        <td rowspan="1"><div style="width:130px">/</div></td>
+        <td rowspan="2"><div style="width:130px">/</div></td>
+    </tr>
+    <tr align="left">
+        <td rowspan="1"><div style="width:120px">OurOpenSource.Net.Mail</div></td>
+        <td rowspan="1"><div style="width:220px">发邮件的</div></td>
+        <td rowspan="1"><div style="width:220px"></div></td>
     </tr>
     <tr align="left">
         <td rowspan="3"><div style="width:120px">OurOpenSource.Security.dll</div></td>
@@ -59,3 +71,7 @@ A powerful library.
 </table>
 
 **P.S.: .NET LICENCES was omitted.**
+
+### 不在本Git的OurOpenSource库
+
+* [OurOpenSource.Data.EasyMark](https://github.com/Orange23333/OurOpenSource.Data.EasyMark)
