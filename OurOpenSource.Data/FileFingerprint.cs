@@ -2,6 +2,8 @@
 using System.IO;
 using System.Security.Cryptography;
 
+using OurOpenSource.Utility;
+
 namespace OurOpenSource.Data
 {
     public enum FileFingerprintType : ushort
@@ -17,6 +19,11 @@ namespace OurOpenSource.Data
 
     public class FileFingerprint
     {
+        private static SHA1 sha1 = SHA1.Create();
+        private static SHA256 sha256 = SHA256.Create();
+        private static MD5 md5 = MD5.Create();
+
+
         private FileFingerprintType fileFingerprintType;
         public FileFingerprintType FileFingerprintType { get { return fileFingerprintType; } }
 
@@ -73,23 +80,38 @@ namespace OurOpenSource.Data
             Array.Copy(data, 0, typeBytes, 0, 2);
             FileFingerprintType type = (FileFingerprintType)BitConverter.ToUInt16(typeBytes);
 
-            byte[] sha1Code = null;
-            byte[] sha256Code = null;
-            byte[] md5Code = null;
+            byte[] sha1Code;
+            byte[] sha256Code;
+            byte[] md5Code;
             int i = 2;
             if (type.HasFlag(FileFingerprintType.SHA1))
             {
+                sha1Code = new byte[20];
                 Array.Copy(data, i, sha1Code, 0, 20);
                 i += 20;
             }
+            else
+            {
+                sha1Code = null;
+            }
             if (type.HasFlag(FileFingerprintType.SHA256))
             {
+                sha256Code = new byte[32];
                 Array.Copy(data, i, sha256Code, 0, 32);
                 i += 32;
             }
+            else
+            {
+                sha256Code = null;
+            }
             if (type.HasFlag(FileFingerprintType.MD5))
             {
+                md5Code = new byte[16];
                 Array.Copy(data, i, md5Code, 0, 16);
+            }
+            else
+            {
+                md5Code = null;
             }
 
             return new FileFingerprint(sha1Code, sha256Code, md5Code);
@@ -133,17 +155,9 @@ namespace OurOpenSource.Data
                 throw new ArgumentException("Can't be FileFingerprintType.None.", "fileFingerprintType");
             }
 
-            if (fileFingerprintType.HasFlag(FileFingerprintType.MD5) && fileFingerprint1.md5Code == fileFingerprint2.md5Code)
-            {
-                if (fileFingerprint1.md5Code != fileFingerprint2.md5Code)
-                {
-                    return false;
-                }
-            }
-
             if (fileFingerprintType.HasFlag(FileFingerprintType.SHA1))
             {
-                if (fileFingerprint1.sha1Code != fileFingerprint2.sha1Code)
+                if (ComparerMethods.ComapreSameLengthByteArray(fileFingerprint1.sha1Code, fileFingerprint2.sha1Code) != 0)
                 {
                     return false;
                 }
@@ -151,7 +165,15 @@ namespace OurOpenSource.Data
 
             if (fileFingerprintType.HasFlag(FileFingerprintType.SHA256))
             {
-                if (fileFingerprint1.sha256Code != fileFingerprint2.sha256Code)
+                if (ComparerMethods.ComapreSameLengthByteArray(fileFingerprint1.sha256Code, fileFingerprint2.sha256Code) != 0)
+                {
+                    return false;
+                }
+            }
+
+            if (fileFingerprintType.HasFlag(FileFingerprintType.MD5))
+            {
+                if (ComparerMethods.ComapreSameLengthByteArray(fileFingerprint1.md5Code, fileFingerprint2.md5Code) != 0)
                 {
                     return false;
                 }
@@ -213,27 +235,10 @@ namespace OurOpenSource.Data
 
             bool moved = false;
 
-            if (fileFingerprintType.HasFlag(FileFingerprintType.MD5))
-            {
-                md5Code = HMACMD5.Create().ComputeHash(fileStream);
-                moved = true;
-            }
-            else
-            {
-                md5Code = null;
-            }
-
             if (fileFingerprintType.HasFlag(FileFingerprintType.SHA1))
             {
-                if (moved)
-                {
-                    fileStream.Seek(0, SeekOrigin.Begin);
-                }
-                else
-                {
-                    moved = true;
-                }
-                sha1Code = HMACSHA1.Create().ComputeHash(fileStream);
+                sha1Code = sha1.ComputeHash(fileStream);
+                moved = true;
             }
             else
             {
@@ -242,15 +247,33 @@ namespace OurOpenSource.Data
 
             if (fileFingerprintType.HasFlag(FileFingerprintType.SHA256))
             {
+                
                 if (moved)
                 {
                     fileStream.Seek(0, SeekOrigin.Begin);
                 }
-                sha256Code = HMACSHA256.Create().ComputeHash(fileStream);
+                else
+                {
+                    moved = true;
+                }
+                sha256Code = sha256.ComputeHash(fileStream);
             }
             else
             {
                 sha256Code = null;
+            }
+
+            if (fileFingerprintType.HasFlag(FileFingerprintType.MD5))
+            {
+                if (moved)
+                {
+                    fileStream.Seek(0, SeekOrigin.Begin);
+                }
+                md5Code = md5.ComputeHash(fileStream);
+            }
+            else
+            {
+                md5Code = null;
             }
 
             fileStream.Close();

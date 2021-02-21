@@ -13,4 +13,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OurOpenSource\OurOpenSource.csproj" />
+  </ItemGroup>
+
 </Project>
