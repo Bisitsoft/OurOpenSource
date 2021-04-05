@@ -32,7 +32,11 @@ namespace OurOpenSource.Net
         }
         public void Stop()
         {
-            socket.Disconnect(false);
+            //因为服务器socket没有连接所以调用以下两个函数会报错。
+            //socket.Shutdown(SocketShutdown.Both);
+            //socket.Disconnect();
+
+            socket.Close();
             socket.Dispose();
         }
 

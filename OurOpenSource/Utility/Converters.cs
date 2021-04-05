@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace OurOpenSource.Utility
@@ -73,6 +74,15 @@ namespace OurOpenSource.Utility
                 }
                 throw new FormatException("Not a hexadecimal digit.");
             }
+        }
+
+        public static Dictionary<string,string> JsonTextToDictionary(string json)
+        {
+            //https://www.cnblogs.com/ccuc/p/6781593.html
+            return json.Trim(new char[] { '{', '}' }).Split(',').ToDictionary<string, string, string>(s => s.Split(':')[0], s => s.Split(':')[1]);
+
+            //Newtonsoft.Json方法
+            //https://blog.csdn.net/u011127019/article/details/59111241
         }
     }
 }
