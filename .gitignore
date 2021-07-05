@@ -341,3 +341,6 @@ healthchecksdb
 
 #Release
 Test_Console/
+/UploadNugetPackage.sh
+CheckList.txt
+/UploadNugetPackage.ps1

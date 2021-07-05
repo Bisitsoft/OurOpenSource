@@ -11,8 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		CheckList.txt = CheckList.txt
 		LICENSE = LICENSE
 		README.md = README.md
+		UploadNugetPackage.ps1 = UploadNugetPackage.ps1
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Console", "Test_Console\Test_Console.csproj", "{2E8E2AF6-4241-4512-BD64-C72365DAC777}"
@@ -21,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource.Security", "O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource.IO", "OurOpenSource.IO\OurOpenSource.IO.csproj", "{50C493EE-7D13-49EE-A1B9-F103A0C5C6E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OurOpenSource.Data", "OurOpenSource.Data\OurOpenSource.Data.csproj", "{402BA185-3CF1-4558-BCDA-2E3D3F9E0C61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource.Data", "OurOpenSource.Data\OurOpenSource.Data.csproj", "{402BA185-3CF1-4558-BCDA-2E3D3F9E0C61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

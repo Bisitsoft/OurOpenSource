@@ -5,7 +5,20 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <PackageProjectUrl>https://github.com/Orange23333/OurOpenSource</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Copyright © Bisitsoft 2021</Copyright>
+    <Company>Bisitsoft Studio</Company>
+    <Authors>Orange233</Authors>
+    <Description>OurOpenSource.Security</Description>
+    <PackageReleaseNotes>More info view: https://github.com/Orange23333/OurOpenSource#library-list .
+Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cryptography\SM2.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
@@ -23,6 +36,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="Cryptography\SM2.cs" />
   </ItemGroup>
 
 </Project>

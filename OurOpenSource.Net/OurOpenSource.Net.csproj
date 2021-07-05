@@ -5,6 +5,14 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <PackageProjectUrl>https://github.com/Orange23333/OurOpenSource</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>Copyright © Bisitsoft 2021</Copyright>
+    <Company>Bisitsoft Studio</Company>
+    <Authors>Orange233</Authors>
+    <PackageReleaseNotes>More info view: https://github.com/Orange23333/OurOpenSource#library-list .
+Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</PackageReleaseNotes>
+    <Description>OurOpenSource.Net</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

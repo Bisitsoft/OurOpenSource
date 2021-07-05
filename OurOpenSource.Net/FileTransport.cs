@@ -8,8 +8,8 @@ namespace OurOpenSource.Net
 {
     public class FileTransport
     {
-        private Connection connection = null;
-        public Connection Connection { get { return connection; } }
+        private ITransporter transporter = null;
+        public ITransporter Transporter { get { return transporter; } }
 
         public void Send(string path)
         {
@@ -18,7 +18,7 @@ namespace OurOpenSource.Net
             int r;
 
             fileStream.Seek(0, SeekOrigin.End);
-            connection.Send(BitConverter.GetBytes(fileStream.Position));
+            transporter.Send(BitConverter.GetBytes(fileStream.Position));
             fileStream.Seek(0, SeekOrigin.Begin);
 
             while (true)
@@ -26,11 +26,11 @@ namespace OurOpenSource.Net
                 r = fileStream.Read(buffer, 0, buffer.Length);
                 if (r == buffer.Length)
                 {
-                    connection.Send(buffer);
+                    transporter.Send(buffer);
                 }
                 else if(r != 0)
                 {
-                    connection.Send(buffer.Take(r).ToArray());
+                    transporter.Send(buffer.Take(r).ToArray());
                 }
                 else
                 {
@@ -47,11 +47,11 @@ namespace OurOpenSource.Net
             byte[] buffer;
             long length, i;
 
-            length = BitConverter.ToInt64(connection.Receive(BitConverter.GetBytes((long)0).Length), 0);
+            length = BitConverter.ToInt64(transporter.Receive(BitConverter.GetBytes((long)0).Length), 0);
 
             for (i = 0; i < length;)
             {
-                buffer = connection.Receive(4096);
+                buffer = transporter.Receive(4096);
                 fileStream.WriteAsync(buffer, 0, buffer.Length);
                 i += buffer.Length;
             }
@@ -66,12 +66,12 @@ namespace OurOpenSource.Net
             byte[] buffer, r;
             long length, i;
 
-            length = BitConverter.ToInt64(connection.Receive(BitConverter.GetBytes((long)0).Length), 0);
+            length = BitConverter.ToInt64(transporter.Receive(BitConverter.GetBytes((long)0).Length), 0);
             r = new byte[length];
 
             for (i = 0; i < length;)
             {
-                buffer = connection.Receive(4096);
+                buffer = transporter.Receive(4096);
                 Array.Copy(buffer, 0, r, i, buffer.Length);
                 i += buffer.Length;
             }
@@ -79,9 +79,9 @@ namespace OurOpenSource.Net
             return r;
         }
 
-        public FileTransport(Connection connection)
+        public FileTransport(ITransporter transporter)
         {
-            this.connection = connection;
+            this.transporter = transporter;
         }
     }
 }
