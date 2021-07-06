@@ -6,11 +6,31 @@ using System.Text;
 
 namespace OurOpenSource.Net
 {
+    /// <summary>
+    /// 一个简易的传输文件类。
+    /// A easy class for sending files.
+    /// </summary>
     public class FileTransport
     {
+        /// <summary>
+        /// 该类使用的传输器。
+        /// The using transporter of this class.
+        /// </summary>
         private ITransporter transporter = null;
+        /// <summary>
+        /// 该类使用的传输器。
+        /// The using transporter of this class.
+        /// </summary>
         public ITransporter Transporter { get { return transporter; } }
 
+        /// <summary>
+        /// 发送文件。
+        /// Send file.
+        /// </summary>
+        /// <param name="path">
+        /// 源文件路径。
+        /// The path of source file.
+        /// </param>
         public void Send(string path)
         {
             FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.SequentialScan);
@@ -41,6 +61,14 @@ namespace OurOpenSource.Net
             fileStream.Close();
         }
 
+        /// <summary>
+        /// 接受文件并保存到本地。
+        /// Receive file and save to location.
+        /// </summary>
+        /// <param name="path">
+        /// 保存路径。
+        /// The path for saving received file.
+        /// </param>
         public void Receive(string path)
         {
             FileStream fileStream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read, 4096, FileOptions.Asynchronous | FileOptions.WriteThrough);
@@ -58,8 +86,17 @@ namespace OurOpenSource.Net
 
             fileStream.Close();
         }
+        /// <summary>
+        /// 接受文件。
+        /// Receive file.
+        /// </summary>
+        /// <returns>
+        /// 接收的文件数据。
+        /// Received file data.
+        /// </returns>
         /// <remarks>
         /// 小心文件过大。
+        /// Caution about large file.
         /// </remarks>
         public byte[] Receive()
         {
@@ -79,6 +116,18 @@ namespace OurOpenSource.Net
             return r;
         }
 
+        /// <summary>
+        /// 用一个传输器构造。
+        /// Use a tansporter to construct.
+        /// </summary>
+        /// <param name="transporter">
+        /// 用来传输文件的传输器。
+        /// A transporter for transporting files.
+        /// </param>
+        /// <remarks>
+        /// 传输器可以选择`SocketConnection`。
+        /// You could choose `SocketConnection` for transporter.
+        /// </remarks>
         public FileTransport(ITransporter transporter)
         {
             this.transporter = transporter;

@@ -15,27 +15,96 @@ using OurOpenSource.Utility;
 namespace OurOpenSource.Security.UniqueDevice
 {
     //参考文献：https://blog.csdn.net/xyxdu/article/details/88196240
+    /// <summary>
+    /// 通用Windows设备唯一标识，版本：1。
+    /// General Widnows unique device identifier, version: 1.
+    /// </summary>
     public class WindowsDeviceV1 : IUniqueDevice
     {
         #region ===IUniqueDevice===
+        /// <summary>
+        /// 获取设备（唯一）信息类型名称。
+        /// Get unique device informationtype.
+        /// </summary>
         public string InfoType { get { return "WinMachineV1"; } }
 
-        public static readonly string DefaultKey_HostName = "HostName";
-        public static readonly string DefaultKey_SMBIOSUUID = "SMBIOSUUID";
-        public static readonly string DefaultKey_MachineGuid = "MachineGuid";
-        public static readonly string DefaultKey_MACAddressesHashCode = "MACAddressesHashCode";
-        public static readonly string DefaultKey_ProductId = "ProductId";
-        public static readonly string DefaultKey_CPUProcessorIDsHashCode = "CPUProcessorIDsHashCode";
+        /// <summary>
+        /// 主机名称的键名。
+        /// Key of host name.
+        /// </summary>
+        public static readonly string KeyName_HostName = "HostName";
+        /// <summary>
+        /// SMBIOS UUID的键名。
+        /// Key of SMBIOS UUID.
+        /// </summary>
+        public static readonly string KeyName_SMBIOSUUID = "SMBIOSUUID";
+        /// <summary>
+        /// Machine GUID的键名。
+        /// Key of Machine GUID.
+        /// </summary>
+        public static readonly string KeyName_MachineGuid = "MachineGuid";
+        /// <summary>
+        /// MAC地址哈希值的键名。
+        /// Key of MAC address hash code.
+        /// </summary>
+        public static readonly string KeyName_MACAddressesHashCode = "MACAddressesHashCode";
+        /// <summary>
+        /// Product ID的键名。
+        /// Key of host Product ID.
+        /// </summary>
+        public static readonly string KeyName_ProductId = "ProductId";
+        /// <summary>
+        /// CPU Processor ID哈希值的键名。
+        /// Key of CPU Processor ID hash code.
+        /// </summary>
+        public static readonly string KeyName_CPUProcessorIDsHashCode = "CPUProcessorIDsHashCode";
+        /// <summary>
+        /// IP地址的键名。
+        /// Key of IP address.
+        /// </summary>
         public static readonly string DefaultKey_IPAddress = "IPAddress";
+
+        /// <summary>
+        /// 设备唯一标识信息。
+        /// Unique machine identifier infomation.
+        /// </summary>
         private Dictionary<string, string> infos;
+        /// <summary>
+        /// 设备唯一标识信息。
+        /// Unique machine identifier infomation.
+        /// </summary>
         public Dictionary<string, string> Infos { get { return infos; } }
 
+        /// <summary>
+        /// 将本IUniqueDevice转化为字节流。
+        /// Convert this instance to bytes stream.
+        /// </summary>
+        /// <returns>
+        /// 转化后的字节流。
+        /// Converted bytes stream.
+        /// </returns>
         public byte[] ToByteArray()
         {
             string json = JsonConvert.SerializeObject(winMachineInfo, jsonSerializerSettings);
             return Encoding.UTF8.GetBytes(json);
         }
 
+        /// <summary>
+        /// 将字节流转换为为`WindowsDeviceV1`。
+        /// Convert bytes stream to type `WindowsDeviceV1`.
+        /// </summary>
+        /// <typeparam name="T">
+        /// 仅能为`WindowsDeviceV1`。
+        /// It only can be `WindowsDeviceV1`。
+        /// </typeparam>
+        /// <param name="bytes">
+        /// 由`WindowsDeviceV1`转化来的字节流。
+        /// A bytes stream convert form an `WindowsDeviceV1`.
+        /// </param>
+        /// <returns>
+        /// 被还原的`WindowsDeviceV1`。
+        /// Converted `WindowsDeviceV1`.
+        /// </returns>
         public T ToUniqueDevice<T>(byte[] bytes) where T : IUniqueDevice
         {
             if (this.GetType() == typeof(T))
@@ -49,45 +118,74 @@ namespace OurOpenSource.Security.UniqueDevice
         }
         #endregion
 
-        JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
+        /// <summary>
+        /// JSON序列化设置。
+        /// JSON Serializer Settings.
+        /// </summary>
+        private JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
         {
             Formatting = Formatting.None,
             //DefaultValueHandling=DefaultValueHandling.Include,
             //NullValueHandling=NullValueHandling.Include,
         };
 
+        /// <summary>
+        /// 用于存储通用Windows设备唯一标识信息的容器。
+        /// Container of stroing general Widnows unique device identifier information.
+        /// </summary>
         //[StructLayout(LayoutKind.Explicit)]
         //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 2)]
         public struct WinMachineInfo
         {
+            /// <summary>
+            /// 主机名。
+            /// Host name.
+            /// </summary>
             [JsonProperty("HostName")]
             public string hostName;
 
+            /// <summary>
+            /// SMBIOS UUID。
+            /// SMBIOS UUID.
+            /// </summary>
             [JsonProperty("SMBIOSUUID")]
             public Guid smBIOSUUID;
 
             /// <summary>
             /// Windows的MachineGUID。
+            /// Windows' Machine GUID.
             /// </summary>
             [JsonProperty("MachineGUID")]
             public Guid machineGUID;
 
             /// <summary>
-            /// 所有CPU ProcessorID的升序的字符串连接后的Hash值
+            /// 把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+            /// The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
             /// </summary>
+            /// /// <remarks>
+            /// 同一批次的CPU的CPU Processor ID可能一样。
+            /// The CPU Processor ID of the same batch of CPUs maybe is same.
+            /// </remarks>
             [JsonProperty("CPUProcessorIDsHashCode")]
             public byte[] cpuProcessorIDsHashCode;
 
             ///// <summary>
-            ///// 所有硬盘序列号的升序的字符串连接后的Hash值。
+            ///// 把所有硬盘序列号按升序排序后的字符串连后的Hash值。
+            ///// The hash value after concatenating the strings sorted by all disk driver serial numbers in ascending order.
             ///// </summary>
             ///// <remarks>
             ///// 非重要值。
+            ///// Unimportant value.
             ///// </remarks>
             //public byte[] diskDriveSerialNumbersHashCode;
 
+            /// <summary>
+            /// Windows的Product ID。
+            /// Windows' Product ID.
+            /// </summary>
             /// <remarks>
             /// 非重要值。
+            /// Unimportant value.
             /// </remarks>
             [JsonProperty("ProductId")]
             public string productID;
@@ -96,26 +194,49 @@ namespace OurOpenSource.Security.UniqueDevice
             //public byte[] macAddress;//6 bytes
 
             /// <summary>
-            /// 所有网卡MAC地址的升序的字符串连接后的Hash值。
+            /// 把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+            /// The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
             /// </summary>
             ///// <remarks>
             ///// 非重要值。
+            ///// Unimportant value.
             ///// </remarks>
             [JsonProperty("MACAddressesHashCode")]
             public byte[] macAddressesHashCode;
 
+            /// <summary>
+            /// IP地址。
+            /// IP address.
+            /// </summary>
             /// <remarks>
             /// 仅由服务器获取并记录。
+            /// Get and record by server.
             /// </remarks>
             [JsonProperty("")]
             public IPAddress ipAddress;
         }
+        /// <summary>
+        /// 通用Windows设备唯一标识信息。
+        /// General Widnows unique device identifier information.
+        /// </summary>
         private WinMachineInfo winMachineInfo;
+        /// <summary>
+        /// 通用Windows设备唯一标识信息。
+        /// General Widnows unique device identifier information.
+        /// </summary>
         public WinMachineInfo _WinMachineInfo
         {
             get { return winMachineInfo; }
         }
 
+        /// <summary>
+        /// 获取通用Windows设备唯一标识信息。
+        /// Get general Widnows unique device identifier information.
+        /// </summary>
+        /// <returns>
+        /// 通用Windows设备唯一标识信息。
+        /// General Widnows unique device identifier information.
+        /// </returns>
         public static WindowsDeviceV1 Create()
         {
             WindowsDeviceV1 winMachine = new WindowsDeviceV1(
@@ -129,12 +250,28 @@ namespace OurOpenSource.Security.UniqueDevice
             return winMachine;
         }
 
+        /// <summary>
+        /// 获取本机的主机名。
+        /// Get localhost.
+        /// </summary>
+        /// <returns>
+        /// 本机的主机名。
+        /// localhost.
+        /// </returns>
         public static string GetHostName()
         {
             RegistryKey target = Registry.LocalMachine.OpenSubKey("SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters");
             return (string)target.GetValue("HostName");
         }
 
+        /// <summary>
+        /// 获取本机的SMBIOS UUID。
+        /// Get localhost SMBIOS UUID.
+        /// </summary>
+        /// <returns>
+        /// 本机的SMBIOS UUID。
+        /// localhost SMBIOS UUID.
+        /// </returns>
         public static string GetSMBIOSUUID()
         {
             string getInfo;
@@ -158,6 +295,14 @@ namespace OurOpenSource.Security.UniqueDevice
             return getInfo;
         }
 
+        /// <summary>
+        /// 获取本机的Machine GUID。
+        /// Get localhost Machine GUID.
+        /// </summary>
+        /// <returns>
+        /// 本机的Machine GUID。
+        /// localhost Machine GUID.
+        /// </returns>
         public static string GetMachineGUID()
         {
             RegistryKey target = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Cryptography");
@@ -167,13 +312,18 @@ namespace OurOpenSource.Security.UniqueDevice
         //http://www.360doc.com/content/13/1221/19/432969_339077802.shtml
         //https://www.cnblogs.com/dyfisgod/p/9199006.html
         //https://www.cnblogs.com/diulela/archive/2012/04/07/2436111.html
-        /////<summary>
-        ///// 通过WMI读取系统信息里的网卡MAC
-        /////</summary>
-        /////<returns></returns>
-        /////<remarks>
-        /////不可靠。
-        /////</remarks>
+        ///// <summary>
+        /////  通过WMI读取系统信息里的网卡MAC。
+        /////  Read the network card MAC in the system information through WMI.
+        ///// </summary>
+        ///// <returns>
+        /////  MAC地址。
+        /////  MAC Addresses.
+        ///// </returns>
+        ///// <remarks>
+        /////  不可靠。
+        /////  Unreliable.
+        ///// </remarks>
         //public static string GetMacAddress()
         //{
         //    IPAddress localIp = null;
@@ -199,17 +349,30 @@ namespace OurOpenSource.Security.UniqueDevice
         //    }
         //    return null;
         //}
+        /// <summary>
+        ///  检查MAC字符串格式是否正确。
+        ///  Check is MAC address string format correct.
+        /// </summary>
+        /// <returns>
+        ///  MAC字符串格式是否正确。
+        ///  Is MAC address string format correct.
+        /// </returns>
         public static bool CheckMacAddress(string macAddress)
         {
             return Regex.Match(macAddress, "[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}:[a-zA-Z0-9]{2}").Success;
         }
-        ///<summary>
-        /// 通过WMI读取系统信息里的网卡MAC
-        ///</summary>
-        ///<returns></returns>
-        ///<remarks>
-        ///不可靠。
-        ///</remarks>
+        /// <summary>
+        ///  通过WMI读取系统信息里的网卡MAC。
+        ///  Read the network card MAC in the system information through WMI.
+        /// </summary>
+        /// <returns>
+        ///  MAC地址。
+        ///  MAC Addresses.
+        /// </returns>
+        /// <remarks>
+        ///  不可靠。
+        ///  Unreliable.
+        /// </remarks>
         public static string[] GetMacAddresses()
         {
             List<string> macs = new List<string>();
@@ -230,21 +393,53 @@ namespace OurOpenSource.Security.UniqueDevice
 
             return macs.Count == 0 ? null : macs.ToArray();
         }
+        /// <summary>
+        ///  检查MAC地址的哈希值长度是否正确。
+        ///  Check is MAC addresses hash code length correct.
+        /// </summary>
+        /// <returns>
+        ///  MAC地址的哈希值长度是否正确。
+        ///  Is MAC addresses hash code length correct.
+        /// </returns>
         public static bool CheckMacAddressesHashCode(byte[] macAddressesHashCode)
         {
             return macAddressesHashCode.Length == 32;
         }
 
+        /// <summary>
+        /// 获取本机的Product ID。
+        /// Get localhost Product ID.
+        /// </summary>
+        /// <returns>
+        /// 本机的Product ID。
+        /// localhost Product ID.
+        /// </returns>
         public static string GetProductID()
         {
             RegistryKey target = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
             return (string)target.GetValue("ProductId");
         }
+        /// <summary>
+        ///  检查Product ID字符串格式是否正确。
+        ///  Check is Product ID string format correct.
+        /// </summary>
+        /// <returns>
+        ///  Product ID字符串格式是否正确。
+        ///  Is Product ID string format correct.
+        /// </returns>
         public static bool CheckProductID(string productID)
         {
             return Regex.Match(productID, "[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}").Success;
         }
 
+        /// <summary>
+        /// 获取本机的CPUProcessorID。
+        /// Get localhost CPUProcessorIDs.
+        /// </summary>
+        /// <returns>
+        /// 本机的CPUProcessorID。
+        /// localhost CPUProcessorIDs.
+        /// </returns>
         public static string[] GetCPUProcessorIDs()
         {
             string temp;
@@ -277,11 +472,31 @@ namespace OurOpenSource.Security.UniqueDevice
             getInfos.Sort();
             return getInfos.ToArray();
         }
+        /// <summary>
+        ///  检查CPUProcessorID的哈希值长度是否正确。
+        ///  Check is CPUProcessorIDs hash code length correct.
+        /// </summary>
+        /// <returns>
+        ///  CPUProcessorID的哈希值长度是否正确。
+        ///  Is CPUProcessorIDs hash code length correct.
+        /// </returns>
         private static bool CheckCpuProcessorIDsHashCode(byte[] cpuProcessorIDsHashCode)
         {
             return cpuProcessorIDsHashCode.Length == 32;
         }
 
+        /// <summary>
+        /// 获取字符串数组的哈希值。
+        /// Get string array's hash code.
+        /// </summary>
+        /// <param name="strings">
+        /// 被计算哈希值的字符串数组。
+        /// A string array need to calculate hash code.
+        /// </param>
+        /// <returns>
+        /// 字符串数组的哈希值。
+        /// String array's hash code.
+        /// </returns>
         public static byte[] GetStringsHashCode(string[] strings)
         {
             StringBuilder sb = new StringBuilder();
@@ -293,6 +508,38 @@ namespace OurOpenSource.Security.UniqueDevice
             return SHA256.Create().ComputeHash(Encoding.ASCII.GetBytes(sb.ToString()));
         }
 
+        /// <summary>
+        /// 初始化通用Windows设备唯一标识。
+        /// Initialise General Widnows unique device identifier.
+        /// </summary>
+        /// <param name="hostName">
+        /// 主机名。
+        /// Host name.
+        /// </param>
+        /// <param name="smBIOSUUID">
+        /// SMBIOS UUID。
+        /// SMBIOS UUID.
+        /// </param>
+        /// <param name="machineGUID">
+        /// Windows的MachineGUID。
+        /// Windows' Machine GUID.
+        /// </param>
+        /// <param name="macAddressesHashCode">
+        /// 把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+        /// The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
+        /// </param>
+        /// <param name="productID">
+        /// Windows的Product ID。
+        /// Windows' Product ID.
+        /// </param>
+        /// <param name="cpuProcessorIDsHashCode">
+        /// 把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+        /// The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
+        /// </param>
+        /// <param name="ipAddress">
+        /// IP地址。
+        /// IP address.
+        /// </param>
         private void InitialiseWinMachineV1(string hostName, Guid smBIOSUUID, Guid machineGUID, byte[] macAddressesHashCode, string productID, byte[] cpuProcessorIDsHashCode = null, IPAddress ipAddress = null)
         {
             if (!CheckMacAddressesHashCode(macAddressesHashCode))
@@ -331,11 +578,51 @@ namespace OurOpenSource.Security.UniqueDevice
             };
         }
 
+        /// <summary>
+        /// 初始化通用Windows设备唯一标识。
+        /// Initialise General Widnows unique device identifier.
+        /// </summary>
+        /// <param name="hostName">
+        /// 主机名。
+        /// Host name.
+        /// </param>
+        /// <param name="smBIOSUUID">
+        /// SMBIOS UUID。
+        /// SMBIOS UUID.
+        /// </param>
+        /// <param name="machineGUID">
+        /// Windows的MachineGUID。
+        /// Windows' Machine GUID.
+        /// </param>
+        /// <param name="macAddressesHashCode">
+        /// 把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+        /// The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
+        /// </param>
+        /// <param name="productID">
+        /// Windows的Product ID。
+        /// Windows' Product ID.
+        /// </param>
+        /// <param name="cpuProcessorIDsHashCode">
+        /// 把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+        /// The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
+        /// </param>
+        /// <param name="ipAddress">
+        /// IP地址。
+        /// IP address.
+        /// </param>
         public WindowsDeviceV1(string hostName, Guid smBIOSUUID, Guid machineGUID, byte[] macAddressesHashCode, string productID, byte[] cpuProcessorIDsHashCode = null, IPAddress ipAddress = null)
         {
             InitialiseWinMachineV1(hostName, smBIOSUUID, machineGUID, macAddressesHashCode, productID, cpuProcessorIDsHashCode, ipAddress);
         }
 
+        /// <summary>
+        /// 初始化通用Windows设备唯一标识。
+        /// Initialise General Widnows unique device identifier.
+        /// </summary>
+        /// <param name="bytes">
+        /// 由`WindowsDeviceV1`转化来的字节流。
+        /// A bytes stream convert form an `WindowsDeviceV1`.
+        /// </param>
         public WindowsDeviceV1(byte[] bytes)
         {
             WindowsDeviceV1 uniqueDevice = ToUniqueDevice<WindowsDeviceV1>(bytes);

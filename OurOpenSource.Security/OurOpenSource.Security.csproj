@@ -17,6 +17,8 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Cryptography\ICryptographyData.cs" />
+    <Compile Remove="Cryptography\RandomMethod_CryptGenRandom.cs" />
     <Compile Remove="Cryptography\SM2.cs" />
   </ItemGroup>
 
@@ -36,6 +38,8 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="Cryptography\ICryptographyData.cs" />
+    <None Include="Cryptography\RandomMethod_CryptGenRandom.cs" />
     <None Include="Cryptography\SM2.cs" />
   </ItemGroup>
 

@@ -16,10 +16,19 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SslClient.cs" />
+    <Compile Remove="SslServer.cs" />
+    <Compile Remove="SslStreamHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="SslClient.cs" />
+    <None Include="SslServer.cs" />
+    <None Include="SslStreamHelper.cs" />
   </ItemGroup>
 
 </Project>
