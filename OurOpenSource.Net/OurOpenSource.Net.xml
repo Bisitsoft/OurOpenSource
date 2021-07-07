@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OurOpenSource.Net</name>
+    </assembly>
+    <members>
+        <member name="T:OurOpenSource.Net.FileTransport">
+            <summary>
+            一个简易的传输文件类。
+            A easy class for sending files.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Net.FileTransport.transporter">
+            <summary>
+            该类使用的传输器。
+            The using transporter of this class.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Net.FileTransport.Transporter">
+            <summary>
+            该类使用的传输器。
+            The using transporter of this class.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.FileTransport.Send(System.String)">
+            <summary>
+            发送文件。
+            Send file.
+            </summary>
+            <param name="path">
+            源文件路径。
+            The path of source file.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.FileTransport.Receive(System.String)">
+            <summary>
+            接受文件并保存到本地。
+            Receive file and save to location.
+            </summary>
+            <param name="path">
+            保存路径。
+            The path for saving received file.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.FileTransport.Receive">
+            <summary>
+            接受文件。
+            Receive file.
+            </summary>
+            <returns>
+            接收的文件数据。
+            Received file data.
+            </returns>
+            <remarks>
+            小心文件过大。
+            Caution about large file.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Net.FileTransport.#ctor(OurOpenSource.Net.ITransporter)">
+            <summary>
+            用一个传输器构造。
+            Use a tansporter to construct.
+            </summary>
+            <param name="transporter">
+            用来传输文件的传输器。
+            A transporter for transporting files.
+            </param>
+            <remarks>
+            传输器可以选择`SocketConnection`。
+            You could choose `SocketConnection` for transporter.
+            </remarks>
+        </member>
+        <member name="T:OurOpenSource.Net.ITransporter">
+            <summary>
+            传输器。
+            Transporter
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.ITransporter.Send(System.String,System.Text.Encoding)">
+            <summary>
+            发送字符串。
+            Send string.
+            </summary>
+            <param name="str">
+            字符串。
+            A string.
+            </param>
+            <param name="encoding">
+            字符串的编码器。
+            Encoding of string.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.ITransporter.Send(System.Byte[])">
+            <summary>
+            发送数据包。
+            Send data package.
+            </summary>
+            <param name="data">
+            数据。
+            Data.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.ITransporter.ReceiveAsString(System.Int32,System.Text.Encoding)">
+            <summary>
+            接收字符串。
+            Receive string.
+            </summary>
+            <param name="maxSize">
+            接收最大字节数。设置为-1代表无限制。
+            Max size of receive package. Set `-1` for unlimited.
+            </param>
+            <param name="encoding">
+            编码器。
+            Encoding.
+            </param>
+            <returns>
+            接收到的字符串。空包则为`""`。
+            Received string. If received an empty package, it will return `""`.
+            </returns>
+            <remarks>
+            `maxSize`是最大字节数，不是最大字符数。
+            `maxSize` is max size of bytes but not characters.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Net.ITransporter.Receive(System.Int32)">
+            <summary>
+            接收数据包。
+            Receive data package.
+            </summary>
+            <param name="maxSize">
+            接收最大字节数。设置为-1代表无限制。
+            Max size of receive package. Set `-1` for unlimited.
+            </param>
+            <returns>
+            接收到的数据包。空包则为null。
+            Received data package. If received an empty package, it will return `null`.
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Net.Mail.EasyMail">
+            <summary>
+            易用的邮件操作类。
+            A class for easy to operation email.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.Mail.EasyMail.Send(System.String,System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            发送邮件。
+            Send email.
+            </summary>
+            <param name="accountAddress">
+            发送邮件用的邮箱账号。
+            An email address for send email.
+            </param>
+            <param name="password">
+            发送邮件用的邮箱密码。
+            The password of account for send email.
+            </param>
+            <param name="smtpServerAddress">
+            SMTP邮箱服务器地址。
+            SMTP server address.
+            </param>
+            <param name="port">
+            SMTP邮箱服务器端口。
+            SMTP server port.
+            </param>
+            <param name="receiverAddress">
+            收信人邮箱地址。
+            Receiver email address.
+            </param>
+            <param name="subject">
+            标题（主题）。
+            Subject.
+            </param>
+            <param name="content">
+            内容。
+            Content.
+            </param>
+        </member>
+        <member name="T:OurOpenSource.Net.SocketConnection">
+            <summary>
+            套接字连接。
+            Socket connection.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Net.SocketConnection.socket">
+            <summary>
+            套接字。
+            Socket.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Net.SocketConnection.Socket">
+            <summary>
+            套接字。
+            Socket.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Net.SocketConnection.DisposeSocketInDeconstruction">
+            <summary>
+            如果所占用套接字处于`Connected`或`IsBound`状态并且该实例的属性`DisposeSocketInDeconstruction`为`true`则会在析构时释放所用的套接字。
+            If it's using socket in `Connected` or `IsBound` status, and this instance's properity `DisposeSocketInDeconstruction` is `true`, it will dispose using socket in deconstruction.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.CreateSocket">
+            <summary>
+            创造一个标准的TCP套接字。
+            Creat a standrad TCP socket.
+            </summary>
+            <returns>
+            返回一个标准的TCP套接字。
+            Return a standrad TCP socket.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.StartServer(System.Net.IPEndPoint,System.Int32)">
+            <summary>
+            将该套接连作为服务器。
+            Use this socket connection as a server.
+            </summary>
+            <param name="local">
+            本服务器的终结点。
+            This server's end point.
+            </param>
+            <param name="backlog">
+            等待队列长度。设置为`0`代表无限。
+            Wait list length. Set `0` for unlimit.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.Accept">
+            <summary>
+            （如果这个套接字连接是作为一个服务器的话）同意一个连接请求。
+            (If this socket connection as a server) Accept a connect request.
+            </summary>
+            <returns>
+            接受的连接。
+            Accepted connection.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.StartClient(System.Net.IPEndPoint)">
+            <summary>
+            将该套接连作为客户端。
+            Use this socket connection as a client.
+            </summary>
+            <param name="remote">
+            目标服务器终结点。
+            Target server end point.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.Stop">
+            <summary>
+            终止连接。
+            Stop connection。
+            如果该实例的属性`DisposeSocketInDeconstruction`为`true`则会释放所用的套接字。
+            If this instance's properity `DisposeSocketInDeconstruction` is `true`, it will dispose using socket.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.Send(System.Byte[])">
+            <summary>
+            发送数据。
+            Send data.
+            </summary>
+            <param name="data">
+            需要发送的数据。
+            The data need to send.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.Receive(System.Int32)">
+            <summary>
+            接收数据。
+            Receive data.
+            </summary>
+            <param name="maxSize">
+            接收数据的最大大小。
+            Max size of receive data.
+            你可以设置任意值，包括负数。但是-1代表无限大。
+            You can set any value, including negative. But `-1` representing unlimit.
+            </param>
+            <returns>
+            接收到的数据。如果是空包，则返回`null`。
+            Received data. If it's an empty package, it will return `null`.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.#ctor">
+            <summary>
+            创造一个标准的TCP连接。
+            Create a standrad TCP connection.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.#ctor(System.Net.Sockets.Socket,System.Boolean)">
+            <summary>
+            通过已有套接字构造。
+            Construct with existed socket.
+            </summary>
+            <param name="socket">
+            已有套接字。
+            Existed socket.
+            </param>
+            <param name="disposeSocketInDeconstruction">
+            <seealso cref="P:OurOpenSource.Net.SocketConnection.DisposeSocketInDeconstruction"/>
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Net.SocketConnection.Finalize">
+            <summary>
+            释放套接字连接。
+            Dispose socket connection.
+            </summary>
+        </member>
+    </members>
+</doc>

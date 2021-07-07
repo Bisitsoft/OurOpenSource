@@ -4,6 +4,12 @@
         <name>OurOpenSource.Security</name>
     </assembly>
     <members>
+        <member name="T:OurOpenSource.Security.Cryptography.ICryptography">
+            <summary>
+            加密算法。
+            Cryptography.
+            </summary>
+        </member>
         <member name="M:OurOpenSource.Security.Cryptography.ICryptography.Encrypt(System.Byte[],System.Byte[])">
             <summary>
             加密。
@@ -116,6 +122,16 @@
             Seed bytes.
             </summary>
         </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Guid.SetSeed(System.Byte[])">
+            <summary>
+            设置种子。
+            Set seed
+            </summary>
+            <param name="seed">
+            随机数种子。
+            seed of random.
+            </param>
+        </member>
         <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Guid.GetInt(System.Int32,System.Int32)">
             <summary>
             获取一个随机的整形。
@@ -133,6 +149,12 @@
             一个随机的整形(Int32.MinValue~Int32.MaxValue)。
             One random `Int32` number(Int32.MinValue~Int32.MaxValue).
             </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Guid.#ctor">
+            <summary>
+            构造RandomMethod_Guid。
+            Construct RandomMethod_Guid.
+            </summary>
         </member>
         <member name="T:OurOpenSource.Security.Cryptography.RandomMethod_Random">
             <summary>
@@ -190,6 +212,19 @@
             One random `Int32` number(0~Int32.MaxValue).
             </returns>
         </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Random.#ctor">
+            <summary>
+            构造默认RandomMethod_Random。
+            Construct default RandomMethod_Random.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Random.#ctor(System.Int32)">
+            <summary>
+            用随机数种子构造RandomMethod_Random。
+            Construct RandomMethod_Random with seed.
+            </summary>
+            <param name="seed"></param>
+        </member>
         <member name="T:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider">
             <summary>
             利用`System.Security.Cryptography.RNGCryptoServiceProvider`生成随机数的方法。
@@ -207,6 +242,16 @@
             种子字节数。
             Seed bytes.
             </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.SetSeed(System.Byte[])">
+            <summary>
+            设置种子。
+            Set seed
+            </summary>
+            <param name="seed">
+            随机数种子。
+            seed of random.
+            </param>
         </member>
         <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.GetInt(System.Int32,System.Int32)">
             <summary>
@@ -248,6 +293,18 @@
             one random bytes array.
             </returns>
         </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.#ctor">
+            <summary>
+            构造RandomMethod_RNGCryptoServiceProvider。
+            Construct RandomMethod_RNGCryptoServiceProvider.
+            </summary>
+        </member>
+        <member name="T:OurOpenSource.Security.Cryptography.Rijndael">
+            <summary>
+            Rijndael（AES）算法。
+            Rijndael(AES)Cryptography.
+            </summary>
+        </member>
         <member name="F:OurOpenSource.Security.Cryptography.Rijndael.sha256">
             <summary>
             SHA256。
@@ -259,7 +316,14 @@
             默认密钥向量。
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:OurOpenSource.Security.Cryptography.Rijndael.EncryptString(System.String,System.Byte[])" -->
+        <member name="M:OurOpenSource.Security.Cryptography.Rijndael.EncryptString(System.String,System.Byte[])">
+            <summary>
+            AES加密算法。
+            </summary>
+            <param name="plainText">明文字符串。</param>
+            <param name="pswdBytes">密钥。</param>
+            <returns>加密后的密文字节数组。</returns>
+        </member>
         <member name="M:OurOpenSource.Security.Cryptography.Rijndael.Encrypt(System.Byte[],System.Byte[])">
             <summary>
             AES加密算法。
@@ -284,6 +348,12 @@
             <param name="pswdBytes">密钥。</param>
             <returns>解密后的明文数据。</returns>
         </member>
+        <member name="T:OurOpenSource.Security.UniqueDevice.IUniqueDevice">
+            <summary>
+            设备唯一标识。
+            Unique device identifier.
+            </summary>
+        </member>
         <member name="P:OurOpenSource.Security.UniqueDevice.IUniqueDevice.InfoType">
             <summary>
             获取设备（唯一）信息类型名称。
@@ -306,7 +376,30 @@
             Converted bytes stream.
             </returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:OurOpenSource.Security.UniqueDevice.IUniqueDevice.ToUniqueDevice``1(System.Byte[])" -->
+        <member name="M:OurOpenSource.Security.UniqueDevice.IUniqueDevice.ToUniqueDevice``1(System.Byte[])">
+            <summary>
+            将字节流转换为为`T`。
+            Convert bytes stream to type `T`.
+            </summary>
+            <typeparam name="T">
+            目标`IUniqueDevice`类型。
+            Target type `IUniqueDevice`。
+            </typeparam>
+            <param name="bytes">
+            由`IUniqueDevice`转化来的字节流。
+            A bytes stream convert form an `IUniqueDevice`.
+            </param>
+            <returns>
+            被还原的`IUniqueDevice`。
+            Converted `IUniqueDevice`.
+            </returns>
+            <remarks>
+            `T`通常只能为该实例的真实类型。
+            Usually, `T` can only be actually type of this instance.
+            如，对于`WindowsDeviceV1`，`T`只能是`WindowsDeviceV1`，即`WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`。
+            For example, To `WindowsDeviceV1`, `T` can only be `WindowsDeviceV1`, that is `WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`.
+            </remarks>
+        </member>
         <member name="T:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1">
             <summary>
             通用Windows设备唯一标识，版本：1。

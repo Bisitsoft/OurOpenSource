@@ -87,8 +87,9 @@ namespace OurOpenSource.Security.Cryptography
         public byte[] Decrypt(byte[] cipherData, byte[] pswdBytes)
         {
             SymmetricAlgorithm des = System.Security.Cryptography.Rijndael.Create();
-            des.KeySize = pswdBytes.Length * 8;
-            des.Key = pswdBytes;
+            byte[] _pswd = ProcessPassword(pswdBytes);
+            des.KeySize = _pswd.Length * 8;
+            des.Key = _pswd;
             des.IV = d_vi;
             byte[] decryptBytes = new byte[cipherData.Length];
             MemoryStream ms = new MemoryStream(cipherData);

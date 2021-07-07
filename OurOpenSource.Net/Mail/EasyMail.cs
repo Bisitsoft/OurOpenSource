@@ -51,15 +51,15 @@ namespace OurOpenSource.Net.Mail
             {
                 //设置发件人,发件人需要与设置的邮件发送服务器的邮箱一致
                 From = new MailAddress(accountAddress),
-                //设置收件人,可添加多个,添加方法与下面的一样
-                To.Add(receiverAddress),
-                //设置抄送人
-                //message.CC.Add(ccer);
                 //设置邮件标题
                 Subject = subject,
                 //设置邮件内容
                 Body = content
             };
+            //设置收件人,可添加多个,添加方法与下面的一样
+            message.To.Add(receiverAddress);
+            //设置抄送人
+            //message.CC.Add(ccer);
 
             //设置邮件发送服务器,服务器根据你使用的邮箱而不同,可以到相应的 邮箱管理后台查看,下面是QQ的
             SmtpClient client = new SmtpClient(smtpServerAddress, port)

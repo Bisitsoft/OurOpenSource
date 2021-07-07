@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OurOpenSource.Data</name>
+    </assembly>
+    <members>
+        <member name="T:OurOpenSource.Data.FileFingerprint">
+            <summary>
+            文件指纹。
+            File fingerprint.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.sha1">
+            <summary>
+            SHA1类。
+            Class SHA1.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.sha256">
+            <summary>
+            SHA256类。
+            Class SHA256.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.md5">
+            <summary>
+            MD5类。
+            Class MD5.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.fileFingerprintChecksumType">
+            <summary>
+            该文件指纹包含的校验值类型。
+            Checksum types include this file fingerprint.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.FileFingerprint.FileFingerprintChecksumType">
+            <summary>
+            该文件指纹包含的校验值类型。
+            Checksum types include this file fingerprint.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.sha1Code">
+            <summary>
+            SHA1校验值。
+            SHA1 checksum.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.FileFingerprint.SHA1Code">
+            <summary>
+            SHA1校验值。
+            SHA1 checksum.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.sha256Code">
+            <summary>
+            SHA256校验值。
+            SHA256 checksum.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.FileFingerprint.SHA256Code">
+            <summary>
+            SHA256校验值。
+            SHA256 checksum.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprint.md5Code">
+            <summary>
+            MD5校验值。
+            MD5 checksum.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.FileFingerprint.MD5Code">
+            <summary>
+            MD5校验值。
+            MD5 checksum.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.ToBase64(OurOpenSource.Data.FileFingerprint)">
+            <summary>
+            将文件指纹转化为Base64格式的字符串。
+            Convert file fingerprint to Base64 string.
+            </summary>
+            <param name="fileFingerprint">
+            需要被转化的文件指纹。
+            A file fingerprint need to convert.
+            </param>
+            <returns>
+            转化后的base64字符串。
+            Converted Base64 string.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.FromBase64(System.String)">
+            <summary>
+            将可识别为存储有文件指纹内容的Base64字符串转化为文件指纹。
+            Convert Base64 string which representing file fingerprint to file fingerprint.
+            </summary>
+            <param name="base64">
+            需要被转化的Base64字符串。
+            A Base64 string need to onvert.
+            </param>
+            <returns>
+            转化后的文件指纹。
+            Converted file fingerprint.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.CheckFile(System.String,OurOpenSource.Data.FileFingerprint@,OurOpenSource.Data.FileFingerprintChecksumType)">
+            <summary>
+            用该指纹与另一个文件的指纹进行比较。
+            Use this file gingerprint to compare with another one of a file.
+            </summary>
+            <param name="path">
+            另一个文件的路径。
+            Another file path.
+            </param>
+            <param name="fileFingerprint">
+            由另一个文件生成的指纹。
+            Generated file fingerprint of another file.
+            </param>
+            <param name="fileFingerprintChecksumType">
+            需要比较的文件指纹类型。
+            Necessary file fingerprint types for comparing.
+            </param>
+            <returns>
+            两个文件指纹是否相同。
+            Are two file fingerprint same.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.IsFileFingerprintSameMin(OurOpenSource.Data.FileFingerprint,OurOpenSource.Data.FileFingerprint)">
+            /// <summary>
+            取两个指纹共同指纹类型进行比较。
+            Take the intersection of the two file fingerprint to compare.
+            </summary>
+            <remarks>
+            当没有共同的指纹类型是将抛出`ArgumentException`。
+            </remarks>
+            <param name="fileFingerprint1">
+            文件指纹1。
+            File fingerprint 1.
+            </param>
+            <param name="fileFingerprint2">
+            文件指纹2。
+            File fingerprint 2.
+            </param>
+            <returns>
+            两个文件指纹是否相同。
+            Are two file fingerprint same.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            当两个文件指纹交集为`FileFingerprintChecksumType.None`时将抛出`ArgumentException`。
+            Throw `ArgumentException` when the intersection of the two file fingerprint is FileFingerprintChecksumType.None.
+            <seealso cref="M:OurOpenSource.Data.FileFingerprint.IsFileFingerprintSame(OurOpenSource.Data.FileFingerprint,OurOpenSource.Data.FileFingerprint,OurOpenSource.Data.FileFingerprintChecksumType)"/>
+            有些异常不列在此处。
+            Some exceptions don't list here.
+            </exception>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.IsFileFingerprintSame(OurOpenSource.Data.FileFingerprint,OurOpenSource.Data.FileFingerprint,OurOpenSource.Data.FileFingerprintChecksumType)">
+            <summary>
+            比较两个文件指纹是否相同。
+            Compare two file fingerprints wheater they are same.
+            </summary>
+            <param name="fileFingerprint1">
+            文件指纹1。
+            File fingerprint 1.
+            </param>
+            <param name="fileFingerprint2">
+            文件指纹2。
+            File fingerprint 2.
+            </param>
+            <param name="fileFingerprintChecksumType">
+            需要比较的文件指纹类型。
+            Necessary file fingerprint types for comparing.
+            </param>
+            <returns>
+            两个文件指纹是否相同。
+            Are two file fingerprint same.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            当两个文件指纹中有至少有一个没有包含所要求的指纹类型或`fileFingerprintChecksumType`为`FileFingerprintChecksumType.None`时将抛出`ArgumentException`。
+            Throw `ArgumentException` when at least one file fingerprint of two haven't as same fingerprint type as `fileFingerprintChecksumType` or `fileFingerprintChecksumType` is `FileFingerprintChecksumType.None`.
+            有些异常不列在此处。
+            Some exceptions don't list here.
+            </exception>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.#ctor(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            直接设置文件指纹的值。
+            Directly set file fingerprint.
+            </summary>
+            <param name="sha1Code">
+            SHA1的值。
+            SHA1 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+            <param name="sha256Code">
+            SHA256的值。
+            SHA256 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+            <param name="md5Code">
+            MD5的值。
+            MD5 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.DirectSet(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            直接设置文件指纹的值。
+            Directly set file fingerprint.
+            </summary>
+            <param name="sha1Code">
+            SHA1的值。
+            SHA1 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+            <param name="sha256Code">
+            SHA256的值。
+            SHA256 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+            <param name="md5Code">
+            MD5的值。
+            MD5 value.
+            如果没有可以设置为null。
+            Please set null if nano.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.#ctor(System.String,OurOpenSource.Data.FileFingerprintChecksumType)">
+            <summary>
+            从文件获取校验值。
+            Get checksum from file.
+            </summary>
+            <param name="path">
+            目标文件的路径。
+            the path of target file.
+            </param>
+            <param name="fileFingerprintChecksumType">
+            需要的文件指纹类型。
+            Necessary file fingerprint types.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Data.FileFingerprint.FromFile(System.String,OurOpenSource.Data.FileFingerprintChecksumType)">
+            <summary>
+            从文件获取校验值。
+            Get checksum from file.
+            </summary>
+            <param name="path">
+            目标文件的路径。
+            the path of target file.
+            </param>
+            <param name="fileFingerprintChecksumType">
+            需要的文件指纹类型。
+            Necessary file fingerprint types.
+            </param>
+        </member>
+        <member name="T:OurOpenSource.Data.FileFingerprintChecksumType">
+            <summary>
+            文件指纹校验值类型。
+            File fingerprint checksum types.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprintChecksumType.None">
+            <summary>
+            无。
+            None.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprintChecksumType.MD5">
+            <summary>
+            包含MD5校验值。
+            Including MD5 checksum.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprintChecksumType.SHA1">
+            <summary>
+            包含SHA1校验值。
+            Including SHA1 checksum.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprintChecksumType.SHA256">
+            <summary>
+            包含SHA256校验值。
+            Including SHA256 checksum.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.FileFingerprintChecksumType.All">
+            <summary>
+            包含所以类型的校验值。
+            Including all types of checksum.
+            </summary>
+        </member>
+    </members>
+</doc>
