@@ -122,7 +122,7 @@ namespace OurOpenSource.Security.UniqueDevice
         /// JSON序列化设置。
         /// JSON Serializer Settings.
         /// </summary>
-        private JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
+        private static readonly JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
         {
             Formatting = Formatting.None,
             //DefaultValueHandling=DefaultValueHandling.Include,
@@ -224,7 +224,9 @@ namespace OurOpenSource.Security.UniqueDevice
         /// 通用Windows设备唯一标识信息。
         /// General Widnows unique device identifier information.
         /// </summary>
+#pragma warning disable IDE1006 // 命名样式
         public WinMachineInfo _WinMachineInfo
+#pragma warning restore IDE1006 // 命名样式
         {
             get { return winMachineInfo; }
         }
@@ -376,7 +378,7 @@ namespace OurOpenSource.Security.UniqueDevice
         public static string[] GetMacAddresses()
         {
             List<string> macs = new List<string>();
-            string mac = "";
+            string mac;//string mac = "";
             ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
             ManagementObjectCollection moc = mc.GetInstances();
             foreach (ManagementObject mo in moc)
@@ -626,6 +628,15 @@ namespace OurOpenSource.Security.UniqueDevice
         public WindowsDeviceV1(byte[] bytes)
         {
             WindowsDeviceV1 uniqueDevice = ToUniqueDevice<WindowsDeviceV1>(bytes);
+            InitialiseWinMachineV1(
+                uniqueDevice._WinMachineInfo.hostName,
+                uniqueDevice._WinMachineInfo.smBIOSUUID,
+                uniqueDevice._WinMachineInfo.machineGUID,
+                uniqueDevice._WinMachineInfo.macAddressesHashCode,
+                uniqueDevice._WinMachineInfo.productID,
+                uniqueDevice._WinMachineInfo.cpuProcessorIDsHashCode,
+                uniqueDevice._WinMachineInfo.ipAddress
+            );
         }
     }
 }

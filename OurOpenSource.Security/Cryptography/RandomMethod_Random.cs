@@ -66,10 +66,19 @@ namespace OurOpenSource.Security.Cryptography
             return random.Next(minValue, maxValue);
         }
 
+        /// <summary>
+        /// 构造默认RandomMethod_Random。
+        /// Construct default RandomMethod_Random.
+        /// </summary>
         public RandomMethod_Random()
         {
             this.random = new Random();
         }
+        /// <summary>
+        /// 用随机数种子构造RandomMethod_Random。
+        /// Construct RandomMethod_Random with seed.
+        /// </summary>
+        /// <param name="seed"></param>
         public RandomMethod_Random(int seed)
         {
             this.random = new Random(seed);

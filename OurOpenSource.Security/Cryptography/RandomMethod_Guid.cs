@@ -15,6 +15,14 @@ namespace OurOpenSource.Security.Cryptography
         /// Seed bytes.
         /// </summary>
         public int SeedNeedLength { get { return 0; } }
+        /// <summary>
+        /// 设置种子。
+        /// Set seed
+        /// </summary>
+        /// <param name="seed">
+        /// 随机数种子。
+        /// seed of random.
+        /// </param>
         public void SetSeed(byte[] seed)
         {
             throw new InvalidOperationException("Needn't seed.");
@@ -46,6 +54,10 @@ namespace OurOpenSource.Security.Cryptography
             return (int)((r - int.MinValue) % (maxValue - minValue + 1) + minValue);
         }
 
+        /// <summary>
+        /// 构造RandomMethod_Guid。
+        /// Construct RandomMethod_Guid.
+        /// </summary>
         public RandomMethod_Guid()
         {
             ;

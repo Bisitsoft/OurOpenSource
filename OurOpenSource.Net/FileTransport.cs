@@ -16,7 +16,9 @@ namespace OurOpenSource.Net
         /// 该类使用的传输器。
         /// The using transporter of this class.
         /// </summary>
-        private ITransporter transporter = null;
+#pragma warning disable IDE0044 // 添加只读修饰符
+        private ITransporter transporter;
+#pragma warning restore IDE0044 // 添加只读修饰符
         /// <summary>
         /// 该类使用的传输器。
         /// The using transporter of this class.

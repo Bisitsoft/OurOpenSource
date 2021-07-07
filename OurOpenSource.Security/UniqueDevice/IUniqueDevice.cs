@@ -2,6 +2,10 @@
 
 namespace OurOpenSource.Security.UniqueDevice
 {
+    /// <summary>
+    /// 设备唯一标识。
+    /// Unique device identifier.
+    /// </summary>
     public interface IUniqueDevice
     {
         /// <summary>
@@ -45,8 +49,8 @@ namespace OurOpenSource.Security.UniqueDevice
         /// <remarks>
         /// `T`通常只能为该实例的真实类型。
         /// Usually, `T` can only be actually type of this instance.
-        /// 如，对于`WindowsDeviceV1`，`T`只能是`WindowsDeviceV1`，即`WindowsDeviceV1.ToUniqueDevice<WindowsDeviceV1>(aByteStreamConvertFormWindowsDeviceV1)`。
-        /// For example, To `WindowsDeviceV1`, `T` can only be `WindowsDeviceV1`, that is `WindowsDeviceV1.ToUniqueDevice<WindowsDeviceV1>(aByteStreamConvertFormWindowsDeviceV1)`.
+        /// 如，对于`WindowsDeviceV1`，`T`只能是`WindowsDeviceV1`，即`WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`。
+        /// For example, To `WindowsDeviceV1`, `T` can only be `WindowsDeviceV1`, that is `WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`.
         /// </remarks>
         T ToUniqueDevice<T>(byte[] bytes) where T : IUniqueDevice;
     }

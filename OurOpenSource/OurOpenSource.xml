@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OurOpenSource</name>
+    </assembly>
+    <members>
+        <member name="T:OurOpenSource.Utility.ComparerMethods">
+            <summary>
+            一些用于比较的方法。
+            Some methods for compare.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Utility.ComparerMethods.ComapreSameLengthByteArray(System.Byte[],System.Byte[])">
+            <summary>
+            比较长度相同的字节数组。
+            Compare same length bytes.
+            </summary>
+            <param name="x">
+            用于比较的字节数组。
+            A byte array for compare.
+            </param>
+            <param name="y">
+            用于比较的字节数组。
+            A byte array for compare.
+            </param>
+            <returns>
+            如果x与y相等则返回0；
+            if `x` as same as `y`, it will return 0;
+            如果`x`大于`y`，则返回一个大于0的值；
+            if `x` is greater than `y`, it will return a value be greater than 0;
+            如果`x`小于`y`，则返回一个小于0的值。
+            if `x` is less than `y`, it will return a value be less than 0.
+            </returns>
+            <remarks>
+            如果你想要通过填充短一些的字节数组来进行比较，请搞清楚他们的字节序。
+            If you want to fill the shorter array for compare, please make sure their endian.
+            </remarks>
+        </member>
+        <member name="T:OurOpenSource.Utility.Converters">
+            <summary>
+            一些转化器。
+            Some Converters.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Utility.Converters.BytesToString(System.Byte[])">
+            <summary>
+            将字节数组转化为字符串。
+            Convert bytes to string.
+            </summary>
+            <param name="bytes">
+            需要被转化的字节数组。
+            A bytes array need to convert.
+            </param>
+            <returns>
+            转化后的字符串。
+            Converted string.
+            </returns>
+            <remarks>
+            不带前缀`"0x"`以及`空格`。如存储`0xFF_AF`的字节数组会被转化为`"FFAF"`。
+            Without `"0x"` as prefix, no `spaces` for separation. For example, a bytes array which stores `0xFF_AF` will be convert to `"FFAF"`.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.Converters.HexStringToBytes(System.String)">
+            <summary>
+            将字符串转化为字节数组。
+            Convert string to bytes.
+            </summary>
+            <param name="hex">
+            由十六进制数字组成的字符串。
+            A string of hexadecimal digits.
+            </param>
+            <returns>
+            转化后的字节数组。
+            Converted bytes array.
+            </returns>
+            <remarks>
+            `hex`长度不应超过int.`MaxValue`的值。
+            The string `hex` length can't over `int.MaxValue`.
+            字符串最后为低位；最低位存在数组索引为`0`的位置。
+            Low-order start from the back of the string hex. Low-order will be store at the bytes array where index is `0`.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.Converters.HexToByte(System.Char)">
+            <summary>
+            将字符转化为比特。
+            Convert one character to one byte.
+            </summary>
+            <param name="hex">
+            一个表示十六进制的字符。
+            A character representing a hexadecimal digit.
+            </param>
+            <returns>
+            转化后的值。
+            Converted value.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Utility.Converters.JsonTextToDictionary(System.String)">
+            <summary>
+            将JSON文本转化为字典。
+            Convert JSON document to dictionay.
+            </summary>
+            <param name="json">
+            JSON文本。
+            Json document.
+            </param>
+            <returns>
+            转化后的字典。
+            Converted dictionary.
+            </returns>
+        </member>
+    </members>
+</doc>

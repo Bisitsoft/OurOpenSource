@@ -16,17 +16,17 @@ namespace OurOpenSource.Data
         /// SHA1类。
         /// Class SHA1.
         /// </summary>
-        private static SHA1 sha1 = SHA1.Create();
+        private static readonly SHA1 sha1 = SHA1.Create();
         /// <summary>
         /// SHA256类。
         /// Class SHA256.
         /// </summary>
-        private static SHA256 sha256 = SHA256.Create();
+        private static readonly SHA256 sha256 = SHA256.Create();
         /// <summary>
         /// MD5类。
         /// Class MD5.
         /// </summary>
-        private static MD5 md5 = MD5.Create();
+        private static readonly MD5 md5 = MD5.Create();
 
         /// <summary>
         /// 该文件指纹包含的校验值类型。

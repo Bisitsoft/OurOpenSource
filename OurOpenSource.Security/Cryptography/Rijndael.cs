@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace OurOpenSource.Security.Cryptography
 {
+    /// <summary>
+    /// Rijndael（AES）算法。
+    /// Rijndael(AES)Cryptography.
+    /// </summary>
     public class Rijndael : ICryptography
     {
         //参考原文：https://www.cnblogs.com/liqipeng/archive/2013/03/23/4576174.html {
@@ -18,15 +22,15 @@ namespace OurOpenSource.Security.Cryptography
         /// SHA256。
         /// SHA256.
         /// </summary>
-        private static SHA256 sha256 = SHA256.Create();
+        private static readonly SHA256 sha256 = SHA256.Create();
         /// <summary>
         /// 默认密钥向量。
         /// </summary>
-        private static byte[] d_vi = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF, 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+        private static readonly byte[] d_vi = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF, 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
         /// <summary>
         /// AES加密算法。
         /// </summary>
-        /// <param name="plainText">明文字符串<。/param>
+        /// <param name="plainText">明文字符串。</param>
         /// <param name="pswdBytes">密钥。</param>
         /// <returns>加密后的密文字节数组。</returns>
         public byte[] EncryptString(string plainText, byte[] pswdBytes)

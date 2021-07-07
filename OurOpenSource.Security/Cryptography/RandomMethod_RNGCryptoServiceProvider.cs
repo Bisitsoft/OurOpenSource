@@ -15,13 +15,21 @@ namespace OurOpenSource.Security.Cryptography
         /// RNG Crypto Service Provider。
         /// RNG Crypto Service Provider.
         /// </summary>
-        private static RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider();
+        private static readonly RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider();
 
         /// <summary>
         /// 种子字节数。
         /// Seed bytes.
         /// </summary>
         public int SeedNeedLength { get { return 0; } }
+        /// <summary>
+        /// 设置种子。
+        /// Set seed
+        /// </summary>
+        /// <param name="seed">
+        /// 随机数种子。
+        /// seed of random.
+        /// </param>
         public void SetSeed(byte[] seed)
         {
             throw new InvalidOperationException("Needn't seed.");
@@ -92,6 +100,10 @@ namespace OurOpenSource.Security.Cryptography
             return r;
         }
 
+        /// <summary>
+        /// 构造RandomMethod_RNGCryptoServiceProvider。
+        /// Construct RandomMethod_RNGCryptoServiceProvider.
+        /// </summary>
         public RandomMethod_RNGCryptoServiceProvider()
         {
             ;

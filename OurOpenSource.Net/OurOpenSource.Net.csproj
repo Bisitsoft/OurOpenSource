@@ -17,6 +17,11 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Work\Project\OurOpenSource\source\OurOpenSource\OurOpenSource.Net\OurOpenSource.Net.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="SslClient.cs" />
     <Compile Remove="SslServer.cs" />

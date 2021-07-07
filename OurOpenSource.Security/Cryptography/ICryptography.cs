@@ -1,5 +1,9 @@
 ﻿namespace OurOpenSource.Security.Cryptography
 {
+    /// <summary>
+    /// 加密算法。
+    /// Cryptography.
+    /// </summary>
     public interface ICryptography
     {
         /// <summary>

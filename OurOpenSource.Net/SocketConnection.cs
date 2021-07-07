@@ -17,7 +17,9 @@ namespace OurOpenSource.Net
         /// 套接字。
         /// Socket.
         /// </summary>
-        private Socket socket = null;
+#pragma warning disable IDE0044 // 添加只读修饰符
+        private Socket socket;
+#pragma warning restore IDE0044 // 添加只读修饰符
         /// <summary>
         /// 套接字。
         /// Socket.
@@ -138,11 +140,9 @@ namespace OurOpenSource.Net
             //    throw new InvalidOperationException("Can't recive any data when the maxSize is 0.");
             //}
 
-            SocketError error;
-
             //接收数据包大小值
             byte[] temp = BitConverter.GetBytes(0);
-            socket.Receive(temp, 0, temp.Length, SocketFlags.None, out error);
+            socket.Receive(temp, 0, temp.Length, SocketFlags.None, out SocketError error);
             if (error != SocketError.Success)
             {
                 throw new SocketException((int)error);

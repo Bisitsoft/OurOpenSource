@@ -16,6 +16,11 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Work\Project\OurOpenSource\source\OurOpenSource\OurOpenSource.IO\OurOpenSource.IO.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>

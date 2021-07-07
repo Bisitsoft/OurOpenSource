@@ -1,0 +1,689 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OurOpenSource.Security</name>
+    </assembly>
+    <members>
+        <member name="M:OurOpenSource.Security.Cryptography.ICryptography.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            加密。
+            Do encrypt.
+            </summary>
+            <param name="data">
+            需要被加密的数据。
+            The data need to encrypt.
+            </param>
+            <param name="password">
+            用于加密的密码。
+            The password for encrypt.
+            </param>
+            <returns>
+            加密后的数据。
+            Encrypted data.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.ICryptography.Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            解密。
+            Do decrypt.
+            </summary>
+            <param name="encryptedData">
+            需要被解密的数据。
+            The data need to decrypt.
+            </param>
+            <param name="password">
+            用于解密的密码
+            The password for decrypt.
+            </param>
+            <returns>
+            解密后的数据。
+            Decrypted data.
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.Cryptography.IRandomMethod">
+            <summary>
+            生成随机数的方法。
+            Method of generating random number.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.IRandomMethod.SeedNeedLength">
+            <summary>
+            种子字节数。
+            Seed bytes.
+            如果不需要则设置为`0`。
+            `0` means unnecessary.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.IRandomMethod.SetSeed(System.Byte[])">
+            <summary>
+            设置种子。
+            Set seed
+            </summary>
+            <param name="seed">
+            随机数种子。
+            seed of random.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.IRandomMethod.GetInt(System.Int32,System.Int32)">
+            <summary>
+            获取一个随机的整形。
+            Get one random `Int32` number.
+            </summary>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的整形。
+            One random `Int32` number.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.IRandomMethod.GetBytes(System.Int32,System.Byte,System.Byte)">
+            <summary>
+            获取一个随机的字节数组。
+            Get one random bytes array.
+            </summary>
+            <param name="n">
+            字节数。
+            bytes number.
+            </param>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的字节数组。
+            one random bytes array.
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.Cryptography.RandomMethod_Guid">
+            <summary>
+            利用`System.Guid`生成随机数的方法。
+            Method of using `System.Guid` generate random number.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.RandomMethod_Guid.SeedNeedLength">
+            <summary>
+            种子字节数。
+            Seed bytes.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Guid.GetInt(System.Int32,System.Int32)">
+            <summary>
+            获取一个随机的整形。
+            Get one random `Int32` number.
+            </summary>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的整形(Int32.MinValue~Int32.MaxValue)。
+            One random `Int32` number(Int32.MinValue~Int32.MaxValue).
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.Cryptography.RandomMethod_Random">
+            <summary>
+            利用`System.Random`生成随机数的方法。
+            Method of using `System.Random` generate random number.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.Cryptography.RandomMethod_Random.random">
+            <summary>
+            随机数。
+            Random.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.RandomMethod_Random.SeedNeedLength">
+            <summary>
+            种子字节数。
+            Seed bytes.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Random.SetSeed(System.Byte[])">
+            <summary>
+            设置种子。
+            Set seed
+            </summary>
+            <param name="seed">
+            随机数种子。
+            seed of random.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Random.SetSeed(System.Int32)">
+            <summary>
+            设置种子。
+            Set seed
+            </summary>
+            <param name="seed">
+            随机数种子。
+            seed of random.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_Random.GetInt(System.Int32,System.Int32)">
+            <summary>
+            获取一个随机的整形。
+            Get one random `Int32` number.
+            </summary>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的整形(0~Int32.MaxValue)。
+            One random `Int32` number(0~Int32.MaxValue).
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider">
+            <summary>
+            利用`System.Security.Cryptography.RNGCryptoServiceProvider`生成随机数的方法。
+            Method of using `System.Security.Cryptography.RNGCryptoServiceProvider` generate random number.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.rngCryptoServiceProvider">
+            <summary>
+            RNG Crypto Service Provider。
+            RNG Crypto Service Provider.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.SeedNeedLength">
+            <summary>
+            种子字节数。
+            Seed bytes.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.GetInt(System.Int32,System.Int32)">
+            <summary>
+            获取一个随机的整形。
+            Get one random `Int32` number.
+            </summary>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的整形(Int32.MinValue~Int32.MaxValue)。
+            One random `Int32` number(Int32.MinValue~Int32.MaxValue).
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.RandomMethod_RNGCryptoServiceProvider.GetBytes(System.Int32,System.Byte,System.Byte)">
+            <summary>
+            获取一个随机的字节数组。
+            Get one random bytes array.
+            </summary>
+            <param name="n">
+            字节数。
+            bytes number.
+            </param>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的字节数组。
+            one random bytes array.
+            </returns>
+        </member>
+        <member name="F:OurOpenSource.Security.Cryptography.Rijndael.sha256">
+            <summary>
+            SHA256。
+            SHA256.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.Cryptography.Rijndael.d_vi">
+            <summary>
+            默认密钥向量。
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:OurOpenSource.Security.Cryptography.Rijndael.EncryptString(System.String,System.Byte[])" -->
+        <member name="M:OurOpenSource.Security.Cryptography.Rijndael.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            AES加密算法。
+            </summary>
+            <param name="plainData">明文数据。</param>
+            <param name="pswdBytes">密钥。</param>
+            <returns>加密后的密文字节数组。</returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.Rijndael.DecryptString(System.Byte[],System.Byte[])">
+            <summary>
+            AES解密。
+            </summary>
+            <param name="cipherText">密文字节数组。</param>
+            <param name="pswdBytes">密钥。</param>
+            <returns>解后的字符串。</returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.Rijndael.Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            AES解密。
+            </summary>
+            <param name="cipherData">密文字节数组。</param>
+            <param name="pswdBytes">密钥。</param>
+            <returns>解密后的明文数据。</returns>
+        </member>
+        <member name="P:OurOpenSource.Security.UniqueDevice.IUniqueDevice.InfoType">
+            <summary>
+            获取设备（唯一）信息类型名称。
+            Get unique device informationtype.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.UniqueDevice.IUniqueDevice.Infos">
+            <summary>
+            获取所有信息。
+            Get all information.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.IUniqueDevice.ToByteArray">
+            <summary>
+            将本IUniqueDevice转化为字节流。
+            Convert this instance to bytes stream.
+            </summary>
+            <returns>
+            转化后的字节流。
+            Converted bytes stream.
+            </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:OurOpenSource.Security.UniqueDevice.IUniqueDevice.ToUniqueDevice``1(System.Byte[])" -->
+        <member name="T:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1">
+            <summary>
+            通用Windows设备唯一标识，版本：1。
+            General Widnows unique device identifier, version: 1.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.InfoType">
+            <summary>
+            获取设备（唯一）信息类型名称。
+            Get unique device informationtype.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_HostName">
+            <summary>
+            主机名称的键名。
+            Key of host name.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_SMBIOSUUID">
+            <summary>
+            SMBIOS UUID的键名。
+            Key of SMBIOS UUID.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_MachineGuid">
+            <summary>
+            Machine GUID的键名。
+            Key of Machine GUID.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_MACAddressesHashCode">
+            <summary>
+            MAC地址哈希值的键名。
+            Key of MAC address hash code.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_ProductId">
+            <summary>
+            Product ID的键名。
+            Key of host Product ID.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.KeyName_CPUProcessorIDsHashCode">
+            <summary>
+            CPU Processor ID哈希值的键名。
+            Key of CPU Processor ID hash code.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.DefaultKey_IPAddress">
+            <summary>
+            IP地址的键名。
+            Key of IP address.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.infos">
+            <summary>
+            设备唯一标识信息。
+            Unique machine identifier infomation.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.Infos">
+            <summary>
+            设备唯一标识信息。
+            Unique machine identifier infomation.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.ToByteArray">
+            <summary>
+            将本IUniqueDevice转化为字节流。
+            Convert this instance to bytes stream.
+            </summary>
+            <returns>
+            转化后的字节流。
+            Converted bytes stream.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.ToUniqueDevice``1(System.Byte[])">
+            <summary>
+            将字节流转换为为`WindowsDeviceV1`。
+            Convert bytes stream to type `WindowsDeviceV1`.
+            </summary>
+            <typeparam name="T">
+            仅能为`WindowsDeviceV1`。
+            It only can be `WindowsDeviceV1`。
+            </typeparam>
+            <param name="bytes">
+            由`WindowsDeviceV1`转化来的字节流。
+            A bytes stream convert form an `WindowsDeviceV1`.
+            </param>
+            <returns>
+            被还原的`WindowsDeviceV1`。
+            Converted `WindowsDeviceV1`.
+            </returns>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.jsonSerializerSettings">
+            <summary>
+            JSON序列化设置。
+            JSON Serializer Settings.
+            </summary>
+        </member>
+        <member name="T:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo">
+            <summary>
+            用于存储通用Windows设备唯一标识信息的容器。
+            Container of stroing general Widnows unique device identifier information.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.hostName">
+            <summary>
+            主机名。
+            Host name.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.smBIOSUUID">
+            <summary>
+            SMBIOS UUID。
+            SMBIOS UUID.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.machineGUID">
+            <summary>
+            Windows的MachineGUID。
+            Windows' Machine GUID.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.cpuProcessorIDsHashCode">
+            <summary>
+            把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
+            </summary>
+            /// <remarks>
+            同一批次的CPU的CPU Processor ID可能一样。
+            The CPU Processor ID of the same batch of CPUs maybe is same.
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.productID">
+            <summary>
+            Windows的Product ID。
+            Windows' Product ID.
+            </summary>
+            <remarks>
+            非重要值。
+            Unimportant value.
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.macAddressesHashCode">
+            <summary>
+            把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.WinMachineInfo.ipAddress">
+            <summary>
+            IP地址。
+            IP address.
+            </summary>
+            <remarks>
+            仅由服务器获取并记录。
+            Get and record by server.
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.winMachineInfo">
+            <summary>
+            通用Windows设备唯一标识信息。
+            General Widnows unique device identifier information.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1._WinMachineInfo">
+            <summary>
+            通用Windows设备唯一标识信息。
+            General Widnows unique device identifier information.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.Create">
+            <summary>
+            获取通用Windows设备唯一标识信息。
+            Get general Widnows unique device identifier information.
+            </summary>
+            <returns>
+            通用Windows设备唯一标识信息。
+            General Widnows unique device identifier information.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetHostName">
+            <summary>
+            获取本机的主机名。
+            Get localhost.
+            </summary>
+            <returns>
+            本机的主机名。
+            localhost.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetSMBIOSUUID">
+            <summary>
+            获取本机的SMBIOS UUID。
+            Get localhost SMBIOS UUID.
+            </summary>
+            <returns>
+            本机的SMBIOS UUID。
+            localhost SMBIOS UUID.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetMachineGUID">
+            <summary>
+            获取本机的Machine GUID。
+            Get localhost Machine GUID.
+            </summary>
+            <returns>
+            本机的Machine GUID。
+            localhost Machine GUID.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.CheckMacAddress(System.String)">
+            <summary>
+             检查MAC字符串格式是否正确。
+             Check is MAC address string format correct.
+            </summary>
+            <returns>
+             MAC字符串格式是否正确。
+             Is MAC address string format correct.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetMacAddresses">
+            <summary>
+             通过WMI读取系统信息里的网卡MAC。
+             Read the network card MAC in the system information through WMI.
+            </summary>
+            <returns>
+             MAC地址。
+             MAC Addresses.
+            </returns>
+            <remarks>
+             不可靠。
+             Unreliable.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.CheckMacAddressesHashCode(System.Byte[])">
+            <summary>
+             检查MAC地址的哈希值长度是否正确。
+             Check is MAC addresses hash code length correct.
+            </summary>
+            <returns>
+             MAC地址的哈希值长度是否正确。
+             Is MAC addresses hash code length correct.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetProductID">
+            <summary>
+            获取本机的Product ID。
+            Get localhost Product ID.
+            </summary>
+            <returns>
+            本机的Product ID。
+            localhost Product ID.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.CheckProductID(System.String)">
+            <summary>
+             检查Product ID字符串格式是否正确。
+             Check is Product ID string format correct.
+            </summary>
+            <returns>
+             Product ID字符串格式是否正确。
+             Is Product ID string format correct.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetCPUProcessorIDs">
+            <summary>
+            获取本机的CPUProcessorID。
+            Get localhost CPUProcessorIDs.
+            </summary>
+            <returns>
+            本机的CPUProcessorID。
+            localhost CPUProcessorIDs.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.CheckCpuProcessorIDsHashCode(System.Byte[])">
+            <summary>
+             检查CPUProcessorID的哈希值长度是否正确。
+             Check is CPUProcessorIDs hash code length correct.
+            </summary>
+            <returns>
+             CPUProcessorID的哈希值长度是否正确。
+             Is CPUProcessorIDs hash code length correct.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.GetStringsHashCode(System.String[])">
+            <summary>
+            获取字符串数组的哈希值。
+            Get string array's hash code.
+            </summary>
+            <param name="strings">
+            被计算哈希值的字符串数组。
+            A string array need to calculate hash code.
+            </param>
+            <returns>
+            字符串数组的哈希值。
+            String array's hash code.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.InitialiseWinMachineV1(System.String,System.Guid,System.Guid,System.Byte[],System.String,System.Byte[],System.Net.IPAddress)">
+            <summary>
+            初始化通用Windows设备唯一标识。
+            Initialise General Widnows unique device identifier.
+            </summary>
+            <param name="hostName">
+            主机名。
+            Host name.
+            </param>
+            <param name="smBIOSUUID">
+            SMBIOS UUID。
+            SMBIOS UUID.
+            </param>
+            <param name="machineGUID">
+            Windows的MachineGUID。
+            Windows' Machine GUID.
+            </param>
+            <param name="macAddressesHashCode">
+            把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
+            </param>
+            <param name="productID">
+            Windows的Product ID。
+            Windows' Product ID.
+            </param>
+            <param name="cpuProcessorIDsHashCode">
+            把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
+            </param>
+            <param name="ipAddress">
+            IP地址。
+            IP address.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.#ctor(System.String,System.Guid,System.Guid,System.Byte[],System.String,System.Byte[],System.Net.IPAddress)">
+            <summary>
+            初始化通用Windows设备唯一标识。
+            Initialise General Widnows unique device identifier.
+            </summary>
+            <param name="hostName">
+            主机名。
+            Host name.
+            </param>
+            <param name="smBIOSUUID">
+            SMBIOS UUID。
+            SMBIOS UUID.
+            </param>
+            <param name="machineGUID">
+            Windows的MachineGUID。
+            Windows' Machine GUID.
+            </param>
+            <param name="macAddressesHashCode">
+            把所有网卡MAC地址按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all MAC addresses in ascending order.
+            </param>
+            <param name="productID">
+            Windows的Product ID。
+            Windows' Product ID.
+            </param>
+            <param name="cpuProcessorIDsHashCode">
+            把所有CPU ProcessorID按升序排序后的字符串连后的Hash值。
+            The hash value after concatenating the strings sorted by all CPU Processor IDs in ascending order.
+            </param>
+            <param name="ipAddress">
+            IP地址。
+            IP address.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.UniqueDevice.WindowsDeviceV1.#ctor(System.Byte[])">
+            <summary>
+            初始化通用Windows设备唯一标识。
+            Initialise General Widnows unique device identifier.
+            </summary>
+            <param name="bytes">
+            由`WindowsDeviceV1`转化来的字节流。
+            A bytes stream convert form an `WindowsDeviceV1`.
+            </param>
+        </member>
+    </members>
+</doc>
