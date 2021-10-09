@@ -51,7 +51,7 @@ namespace OurOpenSource.Security.Cryptography
             }
 
             long r = Guid.NewGuid().GetHashCode();
-            return (int)((r - int.MinValue) % (maxValue - minValue + 1) + minValue);
+            return (int)((r - int.MinValue) % ((long)maxValue - (long)minValue + 1L) + minValue);
         }
 
         /// <summary>

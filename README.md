@@ -1,5 +1,8 @@
 语言Language: [简体中文](#OurOpenSource_zh_CN) | [English](#OurOpenSource_en_EN)
 
+
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 ---
 
 # OurOpenSource_zh_CN
@@ -77,7 +80,7 @@
     </tr>
 </table>
 
-**`OurOpenSoure`库是`.NET Standrad 2.0`，其余的都是`.NET Core 3.1`。**
+**`OurOpenSoure`库用的是`.NET Standrad 2.0`，其余用的都是`.NET Core 3.1`。**
 
 ### 不在本Git仓库的OurOpenSource库
 
@@ -170,7 +173,7 @@ All of below could donwload form nuget.
     </tr>
 </table>
 
-**Library `OurOpenSoure` is `.NET Standrad 2.0`, the rest are `.NET Core 3.1`.**
+**Library `OurOpenSoure` is using `.NET Standrad 2.0`, the rest are using `.NET Core 3.1`.**
 
 ### Some OurOpenSource Library not in this Git Depository
 

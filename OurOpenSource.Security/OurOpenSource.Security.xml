@@ -314,39 +314,204 @@
         <member name="F:OurOpenSource.Security.Cryptography.Rijndael.d_vi">
             <summary>
             默认密钥向量。
+            Default VI.
             </summary>
         </member>
         <member name="M:OurOpenSource.Security.Cryptography.Rijndael.EncryptString(System.String,System.Byte[])">
             <summary>
-            AES加密算法。
+            加密字符串。
+            Encrypt string.
             </summary>
-            <param name="plainText">明文字符串。</param>
-            <param name="pswdBytes">密钥。</param>
-            <returns>加密后的密文字节数组。</returns>
+            <param name="plainText">
+            明文字符串。
+            Plain text.
+            </param>
+            <param name="pswdBytes">
+            密钥。
+            Password.
+            </param>
+            <returns>
+            加密后的密文。
+            Encrypted cipher text.
+            </returns>
+            <remarks>
+            注意，实际使用的是`pswdBytes`的SHA256哈希值。
+            Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
+            默认使用`System.Text.Encoding.UTF8`作为解码器。
+            Use `System.Text.Encoding.UTF8` as default encoder.
+            </remarks>
         </member>
         <member name="M:OurOpenSource.Security.Cryptography.Rijndael.Encrypt(System.Byte[],System.Byte[])">
             <summary>
-            AES加密算法。
+            加密数据。
+            Encrypt data.
             </summary>
-            <param name="plainData">明文数据。</param>
-            <param name="pswdBytes">密钥。</param>
-            <returns>加密后的密文字节数组。</returns>
+            <param name="plainData">
+            明文数据。
+            Plain data.
+            </param>
+            <param name="pswdBytes">
+            密钥。
+            Password.
+            </param>
+            <returns>
+            加密后的数据。
+            Encrypted data.
+            </returns>
+            <remarks>
+            注意，实际使用的是`pswdBytes`的SHA256哈希值。
+            Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
+            </remarks>
         </member>
         <member name="M:OurOpenSource.Security.Cryptography.Rijndael.DecryptString(System.Byte[],System.Byte[])">
             <summary>
-            AES解密。
+            解密字符串。
+            Decrypt string.
             </summary>
-            <param name="cipherText">密文字节数组。</param>
-            <param name="pswdBytes">密钥。</param>
-            <returns>解后的字符串。</returns>
+            <param name="cipherText">
+            密文。
+            Cipher text.
+            </param>
+            <param name="pswdBytes">
+            密钥。
+            Password.
+            </param>
+            <returns>
+            解密后的密文。
+            Decrypted cipher text.
+            </returns>
+            <remarks>
+            注意，实际使用的是`pswdBytes`的SHA256哈希值。
+            Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
+            默认使用`System.Text.Encoding.UTF8`作为解码器。
+            Use `System.Text.Encoding.UTF8` as default encoder.
+            </remarks>
         </member>
         <member name="M:OurOpenSource.Security.Cryptography.Rijndael.Decrypt(System.Byte[],System.Byte[])">
             <summary>
-            AES解密。
+            解密数据。
+            Decrypt data.
             </summary>
-            <param name="cipherData">密文字节数组。</param>
-            <param name="pswdBytes">密钥。</param>
-            <returns>解密后的明文数据。</returns>
+            <param name="cipherData">
+            密文数据。
+            Cipher data.
+            </param>
+            <param name="pswdBytes">
+            密钥。
+            Password.
+            </param>
+            <returns>
+            解密后的明文数据。
+            Decrypted plain data.
+            </returns>
+            <remarks>
+            注意，实际使用的是`pswdBytes`的SHA256哈希值。
+            Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.Rijndael.ProcessPassword(System.Byte[])">
+            <summary>
+            获取密码的SHA256哈希值。
+            Get SHA256 hash code of password.
+            </summary>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <returns>
+            密码的SHA256哈希值。
+            SHA256 hash code of password.
+            </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.SecretString">
+            <summary>
+            秘密字符串。
+            Secret string.
+            </summary>
+            <remarks>
+            只具有保密性，不能保护数据完整性。
+            It only has confidentiality and cannot protect data integrity.
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretString.GetData(System.Byte[])">
+            <summary>
+            解密字符串。
+            Decrypt string.
+            </summary>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <returns>
+            解密后的字符串。
+            Decrypted string.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretString.GetData(System.Byte[],System.Text.Encoding)">
+            <summary>
+            解密并用指定解码器获取字符串。
+            Decrypt and encoding string with designative encoder.
+            </summary>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="encoding">
+            指定的解码器
+            Designative encoder.
+            </param>
+            <returns>
+            解密后的字符串。
+            Decrypted string.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretString.#ctor(System.String,OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            初始化秘密字符串。
+            Initialize secret string.
+            </summary>
+            <param name="plainText">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretString.#ctor(System.String,System.Text.Encoding,OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            用指定的解码器初始化秘密字符串。
+            Initialize secret string with designative encoder.
+            </summary>
+            <param name="plainText">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="encoding">
+            字符串的解码器。
+            Encoder of string.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
         </member>
         <member name="T:OurOpenSource.Security.UniqueDevice.IUniqueDevice">
             <summary>
@@ -777,6 +942,128 @@
             由`WindowsDeviceV1`转化来的字节流。
             A bytes stream convert form an `WindowsDeviceV1`.
             </param>
+        </member>
+        <member name="T:OurOpenSource.SecretData">
+            <summary>
+            秘密数据。
+            Secret data.
+            </summary>
+            <remarks>
+            只具有保密性，不能保护数据完整性。
+            It only has confidentiality and cannot protect data integrity.
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.SecretData.data">
+            <summary>
+            加密的数据。
+            Encrypted data.
+            </summary>
+            <remarks>
+            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
+            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
+            </remarks>
+        </member>
+        <member name="P:OurOpenSource.SecretData.EncryptedData">
+            <summary>
+            加密的数据。
+            Encrypted data.
+            </summary>
+            <remarks>
+            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
+            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.SecretData.GetData(System.Byte[])">
+            <summary>
+            解密数据。
+            Decrypt data.
+            </summary>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <returns>
+            解密后的数据。
+            Decrypted data.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.SecretData.#ctor(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            初始化秘密数据。
+            Initialize secret string.
+            </summary>
+            <param name="plainData">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.SecretData.#ctor">
+            <summary>
+            仅为了开发方便而设置的构造函数。
+            Consrtuct method setted for easyily developing.
+            请调用`SetData`方法来写入加密数据。
+            Please call `SetData` to write secret data.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.SecretData.SetData(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            设置数据。
+            Set data.
+            </summary>
+            <param name="plainData">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.SecretData.GetRandomLong(OurOpenSource.Security.Cryptography.IRandomMethod,System.Int64,System.Int64)">
+            <summary>
+            获取一个随机的`长整型`数值。
+            Get a random `long` value.
+            </summary>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的`长整型`数值。
+            A random `long` value.
+            </returns>
+            <remarks>
+            不检查min是否小于max。
+            Won't check whether is min &lt; max.
+            </remarks>
         </member>
     </members>
 </doc>

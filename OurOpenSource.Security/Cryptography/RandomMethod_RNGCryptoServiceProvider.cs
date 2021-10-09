@@ -60,7 +60,7 @@ namespace OurOpenSource.Security.Cryptography
             byte[] intBytes = new byte[sizeof(int)];
             rngCryptoServiceProvider.GetBytes(intBytes, 0, intBytes.Length);
             long r = BitConverter.ToInt32(intBytes, 0);
-            return (int)((r - int.MinValue) % (maxValue - minValue + 1) + minValue);
+            return (int)((r - int.MinValue) % ((long)maxValue - (long)minValue + 1L) + minValue);
         }
 
         /// <summary>
