@@ -4,7 +4,7 @@ using System.Text;
 
 using OurOpenSource.Security.Cryptography;
 
-namespace OurOpenSource
+namespace OurOpenSource.Security
 {
     /// <summary>
     /// 秘密数据。
