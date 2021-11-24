@@ -4,6 +4,58 @@
         <name>OurOpenSource.Security</name>
     </assembly>
     <members>
+        <member name="T:OurOpenSource.Security.Cryptography.GuidManager">
+            <summary>
+            GUID管理器。
+            GUID manager.
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.GuidManager.Guids">
+            <summary>
+            GUID管理器中所有的GUID。
+            All GUIDs in GUID Manager.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.GuidManager.GetOne">
+            <summary>
+            获取一个真正唯一的Guid。
+            Get a real unique GUID.
+            </summary>
+            <returns>
+            一个真正唯一的Guid。
+            A real unique GUID.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.GuidManager.Remove(System.Guid)">
+            <summary>
+            从GUID管理器中删除一个GUID。
+            Delete a GUID from GUID manager.
+            </summary>
+            <param name="guid">
+            你想要删除的GUID。
+            The GUID which you want to delete.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.Cryptography.GuidManager.Contains(System.Guid)">
+            <summary>
+            判断GUID管理器中是否包含指定的GUID。
+            Whether the specified GUID is included in the guid manager.
+            </summary>
+            <param name="guid">
+            一个你想要的判断是否存在与GUID管理器中的GUID。
+            A guid which you want to make sure is it is contained in GUID manager.
+            </param>
+            <returns>
+            GUID管理器中是否包含指定的GUID。
+            Whether the specified GUID is included in the guid manager.
+            </returns>
+        </member>
+        <member name="P:OurOpenSource.Security.Cryptography.GuidManager.Count">
+            <summary>
+            获取当前GUID管理器中GUID的数量。
+            Get the count of GUID in this GUID manager.
+            </summary>
+        </member>
         <member name="T:OurOpenSource.Security.Cryptography.ICryptography">
             <summary>
             加密算法。
@@ -422,6 +474,128 @@
             密码的SHA256哈希值。
             SHA256 hash code of password.
             </returns>
+        </member>
+        <member name="T:OurOpenSource.Security.SecretData">
+            <summary>
+            秘密数据。
+            Secret data.
+            </summary>
+            <remarks>
+            只具有保密性，不能保护数据完整性。
+            It only has confidentiality and cannot protect data integrity.
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.Security.SecretData.data">
+            <summary>
+            加密的数据。
+            Encrypted data.
+            </summary>
+            <remarks>
+            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
+            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
+            </remarks>
+        </member>
+        <member name="P:OurOpenSource.Security.SecretData.EncryptedData">
+            <summary>
+            加密的数据。
+            Encrypted data.
+            </summary>
+            <remarks>
+            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
+            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretData.GetData(System.Byte[])">
+            <summary>
+            解密数据。
+            Decrypt data.
+            </summary>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <returns>
+            解密后的数据。
+            Decrypted data.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretData.#ctor(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            初始化秘密数据。
+            Initialize secret string.
+            </summary>
+            <param name="plainData">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretData.#ctor">
+            <summary>
+            仅为了开发方便而设置的构造函数。
+            Consrtuct method setted for easyily developing.
+            请调用`SetData`方法来写入加密数据。
+            Please call `SetData` to write secret data.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretData.SetData(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
+            <summary>
+            设置数据。
+            Set data.
+            </summary>
+            <param name="plainData">
+            需要加密的明文字符串。
+            The plain text need to encrypt.
+            </param>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="password">
+            密码。
+            Password.
+            </param>
+            <param name="maxRandomDataSize">
+            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
+            Size of random data of encryption. The unit of size is one random data block, but not byte.
+            </param>
+        </member>
+        <member name="M:OurOpenSource.Security.SecretData.GetRandomLong(OurOpenSource.Security.Cryptography.IRandomMethod,System.Int64,System.Int64)">
+            <summary>
+            获取一个随机的`长整型`数值。
+            Get a random `long` value.
+            </summary>
+            <param name="randomMethod">
+            生成随机数的函数。
+            Method of generate random number.
+            </param>
+            <param name="minValue">
+            最小值。
+            Min value.
+            </param>
+            <param name="maxValue">
+            最大值。
+            Max value.
+            </param>
+            <returns>
+            一个随机的`长整型`数值。
+            A random `long` value.
+            </returns>
+            <remarks>
+            不检查min是否小于max。
+            Won't check whether is min &lt; max.
+            </remarks>
         </member>
         <member name="T:OurOpenSource.Security.SecretString">
             <summary>
@@ -942,128 +1116,6 @@
             由`WindowsDeviceV1`转化来的字节流。
             A bytes stream convert form an `WindowsDeviceV1`.
             </param>
-        </member>
-        <member name="T:OurOpenSource.SecretData">
-            <summary>
-            秘密数据。
-            Secret data.
-            </summary>
-            <remarks>
-            只具有保密性，不能保护数据完整性。
-            It only has confidentiality and cannot protect data integrity.
-            </remarks>
-        </member>
-        <member name="F:OurOpenSource.SecretData.data">
-            <summary>
-            加密的数据。
-            Encrypted data.
-            </summary>
-            <remarks>
-            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
-            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
-            </remarks>
-        </member>
-        <member name="P:OurOpenSource.SecretData.EncryptedData">
-            <summary>
-            加密的数据。
-            Encrypted data.
-            </summary>
-            <remarks>
-            结构：     |   随机数据长度   |  真实数据长度  |[      乱序的随机数据位置       ]|[   真实数据与随机数据   ]|
-            Structure: |Random data length|Real data length|[Disorderly random data position]|[Real data &amp; random data ]|
-            </remarks>
-        </member>
-        <member name="M:OurOpenSource.SecretData.GetData(System.Byte[])">
-            <summary>
-            解密数据。
-            Decrypt data.
-            </summary>
-            <param name="password">
-            密码。
-            Password.
-            </param>
-            <returns>
-            解密后的数据。
-            Decrypted data.
-            </returns>
-        </member>
-        <member name="M:OurOpenSource.SecretData.#ctor(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
-            <summary>
-            初始化秘密数据。
-            Initialize secret string.
-            </summary>
-            <param name="plainData">
-            需要加密的明文字符串。
-            The plain text need to encrypt.
-            </param>
-            <param name="randomMethod">
-            生成随机数的函数。
-            Method of generate random number.
-            </param>
-            <param name="password">
-            密码。
-            Password.
-            </param>
-            <param name="maxRandomDataSize">
-            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
-            Size of random data of encryption. The unit of size is one random data block, but not byte.
-            </param>
-        </member>
-        <member name="M:OurOpenSource.SecretData.#ctor">
-            <summary>
-            仅为了开发方便而设置的构造函数。
-            Consrtuct method setted for easyily developing.
-            请调用`SetData`方法来写入加密数据。
-            Please call `SetData` to write secret data.
-            </summary>
-        </member>
-        <member name="M:OurOpenSource.SecretData.SetData(System.Byte[],OurOpenSource.Security.Cryptography.IRandomMethod,System.Byte[],System.Int32)">
-            <summary>
-            设置数据。
-            Set data.
-            </summary>
-            <param name="plainData">
-            需要加密的明文字符串。
-            The plain text need to encrypt.
-            </param>
-            <param name="randomMethod">
-            生成随机数的函数。
-            Method of generate random number.
-            </param>
-            <param name="password">
-            密码。
-            Password.
-            </param>
-            <param name="maxRandomDataSize">
-            用于加密的随机数据大小。单位是一个随机数据块，不是字节。
-            Size of random data of encryption. The unit of size is one random data block, but not byte.
-            </param>
-        </member>
-        <member name="M:OurOpenSource.SecretData.GetRandomLong(OurOpenSource.Security.Cryptography.IRandomMethod,System.Int64,System.Int64)">
-            <summary>
-            获取一个随机的`长整型`数值。
-            Get a random `long` value.
-            </summary>
-            <param name="randomMethod">
-            生成随机数的函数。
-            Method of generate random number.
-            </param>
-            <param name="minValue">
-            最小值。
-            Min value.
-            </param>
-            <param name="maxValue">
-            最大值。
-            Max value.
-            </param>
-            <returns>
-            一个随机的`长整型`数值。
-            A random `long` value.
-            </returns>
-            <remarks>
-            不检查min是否小于max。
-            Won't check whether is min &lt; max.
-            </remarks>
         </member>
     </members>
 </doc>
