@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OurOpenSource.Security.Cryptography
+{
+	public static class RandomSort
+	{
+		private class ListNode<T>
+		{
+			public ListNode<T> prv;
+			public ListNode<T> nxt;
+			public T value;
+		}
+		public static TElement[] FastMode<TElement>(TElement[] input, IRandomMethod randomMethod)
+		{
+			if (input == null)
+			{
+				return null;
+			}
+			if (input.Length == 0)
+			{
+				return new TElement[0];
+			}
+			if (input.Length == 1)
+			{
+				return new TElement[1] { input[0] };
+			}
+			if (input.Length == 2)
+			{
+				if (randomMethod.GetInt(0, 1) == 0)
+				{
+					return new TElement[2] { input[0], input[1] };
+				}
+				else
+				{
+					return new TElement[2] { input[1], input[0] };
+				}
+			}
+
+			int[] orders = new int[input.Length];
+			int i, iend;
+
+			ListNode<int>[] listNodes = new ListNode<int>[input.Length];
+			ListNode<int> temp;
+			for (i = 0; i < input.Length; i++)
+			{
+				listNodes[i] = new ListNode<int>();
+			}
+			temp = listNodes[0];
+			temp.prv = null;
+			temp.nxt = listNodes[1];
+			temp.value = 0;
+			for (i = 1, iend = input.Length - 1; i < iend; i++)
+			{
+				temp = listNodes[i];
+				temp.prv = listNodes[i - 1];
+				temp.nxt = listNodes[i + 1];
+				temp.value = i;
+			}
+			temp = listNodes[input.Length - 1];
+			temp.prv = listNodes[input.Length - 2];
+			temp.nxt = null;
+			temp.value = input.Length - 1;
+
+#error 实现失败，不如list的insert
+		}
+	}
+}

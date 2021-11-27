@@ -63,7 +63,18 @@ namespace OurOpenSource.Security.Cryptography
         /// </returns>
         public int GetInt(int minValue, int maxValue)
         {
-            return random.Next(minValue, maxValue);
+			if (maxValue == int.MaxValue)
+			{
+                if(random.Next(0, 46341) == 0 && random.Next(0, 46341) == 0) // floor(2^(15.5))+1=46341
+				{
+                    return int.MaxValue;
+				}
+				else
+				{
+                    return random.Next(minValue, int.MaxValue);
+				}
+			}
+            return random.Next(minValue, maxValue + 1);
         }
 
         /// <summary>
