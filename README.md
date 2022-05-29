@@ -80,7 +80,7 @@
     </tr>
 </table>
 
-**`OurOpenSoure`库用的是`.NET Standrad 2.0`，其余用的都是`.NET Core 3.1`。**
+**VisualStudio版本是2022，`OurOpenSoure`库用的是`.NET Standrad 2.0`，其余用的都是`.NET Core 3.1`。**
 
 ### 不在本Git仓库的OurOpenSource库
 
@@ -173,7 +173,7 @@ All of below could donwload form nuget.
     </tr>
 </table>
 
-**Library `OurOpenSoure` is using `.NET Standrad 2.0`, the rest are using `.NET Core 3.1`.**
+**VisualStudio version is2022, Library `OurOpenSoure` is using `.NET Standrad 2.0`, the rest are using `.NET Core 3.1`.**
 
 ### Some OurOpenSource Library not in this Git Depository
 
