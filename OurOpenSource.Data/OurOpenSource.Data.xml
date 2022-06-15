@@ -4,6 +4,40 @@
         <name>OurOpenSource.Data</name>
     </assembly>
     <members>
+        <member name="T:OurOpenSource.Data.Base64">
+            <summary>
+            一个Base64转化类。
+            A Base64 conveter class.
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Data.Base64.ToBase64(System.Byte[])">
+            <summary>
+            将字节数据转化为Base64格式字符串。
+            Convert bytes data to Base64 format string.
+            </summary>
+            <param name="value">
+            字节数据。
+            Bytes data.
+            </param>
+            <returns>
+            转化后Base64格式字符串。
+            Converted Base64 format string.
+            </returns>
+        </member>
+        <member name="M:OurOpenSource.Data.Base64.ToBytes(System.String)">
+            <summary>
+            将Base64格式的字符串转化为字节数据。
+            Convert Base64 format string to bytes data.
+            </summary>
+            <param name="value">
+            Base64格式字符串。
+            Base64 format string.
+            </param>
+            <returns>
+            字节数据。
+            Bytes data.
+            </returns>
+        </member>
         <member name="T:OurOpenSource.Data.FileFingerprint">
             <summary>
             文件指纹。
@@ -293,6 +327,126 @@
             包含所以类型的校验值。
             Including all types of checksum.
             </summary>
+        </member>
+        <member name="T:OurOpenSource.Data.TemperatureUnit">
+            <summary>
+            温度计量单位。
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.TemperatureUnit.Kelvin">
+            <summary>
+            开尔文。
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.TemperatureUnit.DegreesCelsius">
+            <summary>
+            摄氏度。
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Data.TemperatureUnit.DegreesFahrenheit">
+            <summary>
+            华氏度。
+            </summary>
+        </member>
+        <member name="T:OurOpenSource.Data.Temperature">
+            <summary>
+            温度。
+            用存储温度数值的类。
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.Temperature.CheckTemperature">
+            <summary>
+            是否在每次修改`Temperature.Value`的值时，进行检查，检查其是否大于等于`0K`。
+            </summary>
+            <remarks>
+            检查过程中，如果检测到该值小于`0K`并且大于等于`-double.Epsilon`时，其会被自动纠正到`0K`。
+            </remarks>
+        </member>
+        <member name="F:OurOpenSource.Data.Temperature.ZeroKelvin">
+            <summary>
+            以摄氏度为单位的绝对零度。
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.GetZeroKelvin(OurOpenSource.Data.TemperatureUnit)">
+            <summary>
+            获取`0K`。
+            </summary>
+            <param name="unit">目标温度单位。</param>
+            <returns>以`unit`为单位表示的`0K`。</returns>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.IsGreaterOrEqualZeroKelvin(System.Double,OurOpenSource.Data.TemperatureUnit,System.Double@)">
+            <summary>
+            检查温度是否大于等于`0K`。
+            </summary>
+            <remarks>
+            该方法不受`CheckTemperature`开关的影响。
+            </remarks>
+            <param name="value">温度。</param>
+            <param name="unit">温度的单位。</param>
+            <param name="correctedValue">纠正后的值。检查过程中，如果检测到该值小于`0K`并且大于等于`-double.Epsilon`时，其会被自动纠正到`0K`。</param>
+            <returns>温度是否大于等于`0K`。</returns>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.Clone">
+            <summary>
+            克隆温度。
+            </summary>
+            <returns>克隆到的温度。</returns>
+        </member>
+        <member name="P:OurOpenSource.Data.Temperature.Value">
+            <summary>
+            温度数值。
+            </summary>
+        </member>
+        <member name="P:OurOpenSource.Data.Temperature.Unit">
+            <summary>
+            温度单位。
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.Convert(OurOpenSource.Data.Temperature,OurOpenSource.Data.TemperatureUnit)">
+            <summary>
+            转化温度。
+            </summary>
+            <param name="origin">原温度。</param>
+            <param name="targetUnit">目标温度单位。</param>
+            <returns>转换后的温度。</returns>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.Convert(System.Double,OurOpenSource.Data.TemperatureUnit,OurOpenSource.Data.TemperatureUnit)">
+            <summary>
+            转化温度。
+            </summary>
+            <param name="origin">原温度数值。</param>
+            <param name="originUnit">原温度单位。</param>
+            <param name="targetUnit">目标温度单位。</param>
+            <returns>转换后的温度。</returns>
+            <exception cref="T:System.ArgumentException">当温度单位不存在时，会抛出此异常。</exception>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.ToString">
+            <summary>
+            降温度转化为字符串。
+            </summary>
+            <returns>字符串。</returns>
+            <exception cref="T:System.ArgumentException">当温度单位不存在时，会抛出此异常。</exception>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.Parse(System.String)">
+            <summary>
+            将字符串转化为温度。
+            </summary>
+            <remarks>
+            字符串格式应当为整数、浮点数或科学记数法表示的数字（E的大小写不分）+单位K（开尔文）、C（摄氏度）或F（华氏度）（不分大小写），两部分之间或之外允许有空白符（由Unicode定义）如：
+            `300K`、`4.5 C   `、` -1E-1 F`。
+            </remarks>
+            <param name="text">字符串。</param>
+            <returns>温度。</returns>
+            <exception cref="T:System.FormatException">当字符串格式不对时，会抛出此异常。</exception>
+            <exception cref="T:System.ArgumentException">当温度单位不存在时，会抛出此异常。</exception>
+        </member>
+        <member name="M:OurOpenSource.Data.Temperature.#ctor(System.Double,OurOpenSource.Data.TemperatureUnit,System.Boolean)">
+            <summary>
+            初始化温度。
+            </summary>
+            <param name="value">温度值。</param>
+            <param name="unit">温度单位。</param>
+            <param name="ignoreCheckTemperatureOnce">是否在初始化时跳过绝对零度检查。</param>
         </member>
     </members>
 </doc>

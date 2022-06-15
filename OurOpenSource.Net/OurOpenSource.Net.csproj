@@ -15,7 +15,9 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>1.0.0.2</Version>
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
-    <RepositoryType>net mail</RepositoryType>
+    <RepositoryType></RepositoryType>
+    <PackageTags>net;mail;socket;ssl;file-transport</PackageTags>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

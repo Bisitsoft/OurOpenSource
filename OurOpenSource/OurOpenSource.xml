@@ -108,5 +108,70 @@
             Converted dictionary.
             </returns>
         </member>
+        <member name="T:OurOpenSource.Utility.FkPath">
+            <remarks>
+            结尾的空格也算作路径的一部分。
+            DirectorySeparator忽略出现意外值的情况，默认为Backslash。
+            仅支持本地路径。
+            </remarks>
+        </member>
+        <member name="T:OurOpenSource.Utility.FkPath.DirectorySeparator">
+            <summary>
+            路径分隔符。
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Utility.FkPath.DirectorySeparator.DoNotCare">
+            <summary>
+            不变或者使用默认。
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Utility.FkPath.DirectorySeparator.Slash">
+            <summary>
+            \
+            </summary>
+        </member>
+        <member name="F:OurOpenSource.Utility.FkPath.DirectorySeparator.Backslash">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.GetRelativePath(System.String,System.String,OurOpenSource.Utility.FkPath.DirectorySeparator)">
+            <remark>
+            如果无法判断则返回原值
+            </remark>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.IsDirectoryNameEquals(System.String,System.String)">
+            <remarks>
+            仅考虑单个目录名“a”或“a/”不考虑“a//”。不过显然“C://”==“C:/”，但是“C:/dsadasd//”!=“D:/dsadasd//”，所以无法判断“dsadasd//”。
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.Combine(System.String,System.String,OurOpenSource.Utility.FkPath.DirectorySeparator)">
+            <remarks>
+            视parentPath最后一项为文件夹，无论是否为文件。
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.GetShortPath(System.String,System.Boolean)">
+            <summary>
+            处理../。
+            </summary>
+            <remarks>
+            如果文件不存在或者IsIsAbsolutePath的结果为false则返回原path。
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.IsDirectory(System.String)">
+            <remarks>
+            false不代表完全否定，可能是因为找不到路径。
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.IsFile(System.String)">
+            <remarks>
+            false不代表完全否定，可能是因为找不到路径。
+            </remarks>
+        </member>
+        <member name="M:OurOpenSource.Utility.FkPath.IsExists(System.String)">
+            <summary>
+            是否存在目录或文件。
+            </summary>
+        </member>
     </members>
 </doc>

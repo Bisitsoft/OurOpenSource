@@ -1,20 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<Platforms>AnyCPU;x64;x86</Platforms>
     <PackageProjectUrl>https://github.com/Orange23333/OurOpenSource</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Copyright>Copyright © Bisitsoft 2021</Copyright>
-    <Company>Bisitsoft Studio</Company>
+	<Company>Bisitsoft Studio</Company>
+	<Copyright>Copyright © Bisitsoft 2021</Copyright>
     <Authors>Orange233</Authors>
     <Description>OurOpenSource.Data</Description>
     <PackageReleaseNotes>More info view: https://github.com/Orange23333/OurOpenSource#library-list .
 Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	<AssemblyVersion>1.0.0.2</AssemblyVersion>
+	<FileVersion>1.0.0.2</FileVersion>
     <Version>1.0.0.2</Version>
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
-    <PackageTags>file-fingerprint</PackageTags>
+    <PackageTags>file-fingerprint;base64;temperature</PackageTags>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -17,6 +17,8 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
     <FileVersion>1.0.0.2</FileVersion>
     <Version>1.0.0.2</Version>
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <PackageTags>fk-path</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

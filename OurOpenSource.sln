@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource", "OurOpenSource\OurOpenSource.csproj", "{CDCBE806-1557-42CE-89CD-0965889F1C33}"
 EndProject
@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CheckList.txt = CheckList.txt
 		LICENSE = LICENSE
 		README.md = README.md
+		UpdateExplain.txt = UpdateExplain.txt
 		UploadNugetPackage.ps1 = UploadNugetPackage.ps1
 	EndProjectSection
 EndProject
@@ -24,6 +25,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource.IO", "OurOpenSource.IO\OurOpenSource.IO.csproj", "{50C493EE-7D13-49EE-A1B9-F103A0C5C6E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurOpenSource.Data", "OurOpenSource.Data\OurOpenSource.Data.csproj", "{402BA185-3CF1-4558-BCDA-2E3D3F9E0C61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ref", "ref", "{8F4DA606-BE0E-42EE-A4DA-A7B39C8C9E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

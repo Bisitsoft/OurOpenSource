@@ -15,7 +15,8 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
     <Version>1.0.2.8</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryUrl>https://github.com/Orange23333/OurOpenSource</RepositoryUrl>
-    <PackageTags>security cryptography uniquedevice rijndael random</PackageTags>
+    <PackageTags>security;cryptography;uniquedevice;rijndael;random</PackageTags>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
