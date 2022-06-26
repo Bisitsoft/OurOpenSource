@@ -90,20 +90,20 @@ namespace OurOpenSource.Security.UniqueDevice
         }
 
         /// <summary>
-        /// 将字节流转换为为`WindowsDeviceV1`。
-        /// Convert bytes stream to type `WindowsDeviceV1`.
+        /// 将字节流转换为为`<see cref="WindowsDeviceV1"/>`。
+        /// Convert bytes stream to type `<see cref="WindowsDeviceV1"/>`.
         /// </summary>
         /// <typeparam name="T">
-        /// 仅能为`WindowsDeviceV1`。
-        /// It only can be `WindowsDeviceV1`。
+        /// 仅能为`<see cref="WindowsDeviceV1"/>`。
+        /// It only can be `<see cref="WindowsDeviceV1"/>`。
         /// </typeparam>
         /// <param name="bytes">
-        /// 由`WindowsDeviceV1`转化来的字节流。
-        /// A bytes stream convert form an `WindowsDeviceV1`.
+        /// 由`<see cref="WindowsDeviceV1"/>`转化来的字节流。
+        /// A bytes stream convert form an `<see cref="WindowsDeviceV1"/>`.
         /// </param>
         /// <returns>
-        /// 被还原的`WindowsDeviceV1`。
-        /// Converted `WindowsDeviceV1`.
+        /// 被还原的`<see cref="WindowsDeviceV1"/>`。
+        /// Converted `<see cref="WindowsDeviceV1"/>`.
         /// </returns>
         public T ToUniqueDevice<T>(byte[] bytes) where T : IUniqueDevice
         {
@@ -224,9 +224,7 @@ namespace OurOpenSource.Security.UniqueDevice
         /// 通用Windows设备唯一标识信息。
         /// General Widnows unique device identifier information.
         /// </summary>
-#pragma warning disable IDE1006 // 命名样式
         public WinMachineInfo _WinMachineInfo
-#pragma warning restore IDE1006 // 命名样式
         {
             get { return winMachineInfo; }
         }
@@ -278,7 +276,7 @@ namespace OurOpenSource.Security.UniqueDevice
         {
             string getInfo;
             //1 2  3 4  5 6  7 8  9 10 1112 1314 1516
-            //CBC5 D14C-29E6-11B2-A85C-84C4 C714 784B
+            //CBC5 D14C-29E6-11B2-A85C-84C4 C714 784B // 这只是一串随机生成的GUID。 It is a random generated GUID.
             using (Process process = new Process())
             {
                 process.StartInfo.UseShellExecute = false;
@@ -622,8 +620,8 @@ namespace OurOpenSource.Security.UniqueDevice
         /// Initialise General Widnows unique device identifier.
         /// </summary>
         /// <param name="bytes">
-        /// 由`WindowsDeviceV1`转化来的字节流。
-        /// A bytes stream convert form an `WindowsDeviceV1`.
+        /// 由`<see cref="WindowsDeviceV1"/>`转化来的字节流。
+        /// A bytes stream convert form an `<see cref="WindowsDeviceV1"/>`.
         /// </param>
         public WindowsDeviceV1(byte[] bytes)
         {

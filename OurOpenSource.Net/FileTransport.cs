@@ -16,9 +16,7 @@ namespace OurOpenSource.Net
         /// 该类使用的传输器。
         /// The using transporter of this class.
         /// </summary>
-#pragma warning disable IDE0044 // 添加只读修饰符
         private ITransporter transporter;
-#pragma warning restore IDE0044 // 添加只读修饰符
         /// <summary>
         /// 该类使用的传输器。
         /// The using transporter of this class.
@@ -127,8 +125,8 @@ namespace OurOpenSource.Net
         /// A transporter for transporting files.
         /// </param>
         /// <remarks>
-        /// 传输器可以选择`SocketConnection`。
-        /// You could choose `SocketConnection` for transporter.
+        /// 传输器可以选择`<see cref="SocketConnection"/>`。
+        /// You could choose `<see cref="SocketConnection"/>` for transporter.
         /// </remarks>
         public FileTransport(ITransporter transporter)
         {

@@ -13,18 +13,18 @@ namespace OurOpenSource.Data
     public class FileFingerprint
     {
         /// <summary>
-        /// SHA1类。
-        /// Class SHA1.
+        /// `<see cref="SHA1"/>`类。
+        /// Class `<see cref="SHA1"/>`.
         /// </summary>
         private static readonly SHA1 sha1 = SHA1.Create();
         /// <summary>
-        /// SHA256类。
-        /// Class SHA256.
+        /// `<see cref="SHA256"/>`类。
+        /// Class `<see cref="SHA256"/>`.
         /// </summary>
         private static readonly SHA256 sha256 = SHA256.Create();
         /// <summary>
-        /// MD5类。
-        /// Class MD5.
+        /// `<see cref="MD5"/>`类。
+        /// Class `<see cref="MD5"/>`.
         /// </summary>
         private static readonly MD5 md5 = MD5.Create();
 
@@ -138,7 +138,7 @@ namespace OurOpenSource.Data
             byte[] data = Convert.FromBase64String(base64);
             byte[] typeBytes = BitConverter.GetBytes(sizeof(ushort));
             Array.Copy(data, 0, typeBytes, 0, 2);
-            FileFingerprintChecksumType type = (FileFingerprintChecksumType)BitConverter.ToUInt16(typeBytes);
+            FileFingerprintChecksumType type = (FileFingerprintChecksumType)BitConverter.ToUInt16(typeBytes, 0);
 
             byte[] sha1Code;
             byte[] sha256Code;
@@ -207,9 +207,6 @@ namespace OurOpenSource.Data
         /// 取两个指纹共同指纹类型进行比较。
         /// Take the intersection of the two file fingerprint to compare.
         /// </summary>
-        /// <remarks>
-        /// 当没有共同的指纹类型是将抛出`ArgumentException`。
-        /// </remarks>
         /// <param name="fileFingerprint1">
         /// 文件指纹1。
         /// File fingerprint 1.
@@ -223,8 +220,8 @@ namespace OurOpenSource.Data
         /// Are two file fingerprint same.
         /// </returns>
         /// <exception cref="ArgumentException">
-        /// 当两个文件指纹交集为`FileFingerprintChecksumType.None`时将抛出`ArgumentException`。
-        /// Throw `ArgumentException` when the intersection of the two file fingerprint is FileFingerprintChecksumType.None.
+        /// 当两个文件指纹交集为`<see cref="FileFingerprintChecksumType.None"/>`时将抛出`<see cref="ArgumentException"/>`。
+        /// Throw `<see cref="ArgumentException"/>` when the intersection of the two file fingerprint is `<see cref="FileFingerprintChecksumType.None"/>`.
         /// <seealso cref="IsFileFingerprintSame(FileFingerprint, FileFingerprint, FileFingerprintChecksumType)"/>
         /// 有些异常不列在此处。
         /// Some exceptions don't list here.
@@ -260,8 +257,8 @@ namespace OurOpenSource.Data
         /// Are two file fingerprint same.
         /// </returns>
         /// <exception cref="ArgumentException">
-        /// 当两个文件指纹中有至少有一个没有包含所要求的指纹类型或`fileFingerprintChecksumType`为`FileFingerprintChecksumType.None`时将抛出`ArgumentException`。
-        /// Throw `ArgumentException` when at least one file fingerprint of two haven't as same fingerprint type as `fileFingerprintChecksumType` or `fileFingerprintChecksumType` is `FileFingerprintChecksumType.None`.
+        /// 当两个文件指纹中有至少有一个没有包含所要求的指纹类型或`<paramref name="fileFingerprintChecksumType"/>`为`<see cref="FileFingerprintChecksumType.None"/>`时将抛出`<see cref="ArgumentException"/>`。
+        /// Throw `<see cref="ArgumentException"/>` when at least one file fingerprint of two haven't as same fingerprint type as `<see cref="OurOpenSource.Data.FileFingerprintChecksumType"/>` or `<paramref name="fileFingerprintChecksumType"/>` is `<see cref="FileFingerprintChecksumType.None"/>`.
         /// 有些异常不列在此处。
         /// Some exceptions don't list here.
         /// </exception>
@@ -314,20 +311,20 @@ namespace OurOpenSource.Data
         /// <param name="sha1Code">
         /// SHA1的值。
         /// SHA1 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         /// <param name="sha256Code">
         /// SHA256的值。
         /// SHA256 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         /// <param name="md5Code">
         /// MD5的值。
         /// MD5 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         public FileFingerprint(byte[] sha1Code = null, byte[] sha256Code = null, byte[] md5Code = null)
         {
@@ -340,20 +337,20 @@ namespace OurOpenSource.Data
         /// <param name="sha1Code">
         /// SHA1的值。
         /// SHA1 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         /// <param name="sha256Code">
         /// SHA256的值。
         /// SHA256 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         /// <param name="md5Code">
         /// MD5的值。
         /// MD5 value.
-        /// 如果没有可以设置为null。
-        /// Please set null if nano.
+        /// 如果没有可以设置为`<see langword="null"/>`。
+        /// Please set `<see langword="null"/>` if nano.
         /// </param>
         private void DirectSet(byte[] sha1Code, byte[] sha256Code, byte[] md5Code)
         {

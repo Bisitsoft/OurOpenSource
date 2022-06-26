@@ -21,8 +21,8 @@ namespace OurOpenSource.Security.UniqueDevice
         Dictionary<string, string> Infos { get; }
 
         /// <summary>
-        /// 将本IUniqueDevice转化为字节流。
-        /// Convert this instance to bytes stream.
+        /// 将本`<see cref="IUniqueDevice"/>`实例转化为字节流。
+        /// Convert this `<see cref="IUniqueDevice"/>` instance to bytes stream.
         /// </summary>
         /// <returns>
         /// 转化后的字节流。
@@ -35,22 +35,22 @@ namespace OurOpenSource.Security.UniqueDevice
         /// Convert bytes stream to type `T`.
         /// </summary>
         /// <typeparam name="T">
-        /// 目标`IUniqueDevice`类型。
-        /// Target type `IUniqueDevice`。
+        /// 目标`<see cref="IUniqueDevice"/>`类型。
+        /// Target type `<see cref="IUniqueDevice"/>`。
         /// </typeparam>
         /// <param name="bytes">
-        /// 由`IUniqueDevice`转化来的字节流。
-        /// A bytes stream convert form an `IUniqueDevice`.
+        /// 由`<see cref="IUniqueDevice"/>`转化来的字节流。
+        /// A bytes stream convert form an `<see cref="IUniqueDevice"/>`.
         /// </param>
         /// <returns>
-        /// 被还原的`IUniqueDevice`。
-        /// Converted `IUniqueDevice`.
+        /// 被还原的`<see cref="IUniqueDevice"/>`。
+        /// Converted `<see cref="IUniqueDevice"/>`.
         /// </returns>
         /// <remarks>
         /// `T`通常只能为该实例的真实类型。
         /// Usually, `T` can only be actually type of this instance.
-        /// 如，对于`WindowsDeviceV1`，`T`只能是`WindowsDeviceV1`，即`WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`。
-        /// For example, To `WindowsDeviceV1`, `T` can only be `WindowsDeviceV1`, that is `WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`.
+        /// 例如，对于`<seealso cref="WindowsDeviceV1"/>`，`T`只能是`<seealso cref="WindowsDeviceV1"/>`，即`WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`。
+        /// For example, To `<seealso cref="WindowsDeviceV1"/>`, `T` can only be `<seealso cref="WindowsDeviceV1"/>`, that is `WindowsDeviceV1.ToUniqueDevice&lt;WindowsDeviceV1&gt;(aByteStreamConvertFormWindowsDeviceV1)`.
         /// </remarks>
         T ToUniqueDevice<T>(byte[] bytes) where T : IUniqueDevice;
     }

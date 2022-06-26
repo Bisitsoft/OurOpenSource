@@ -45,7 +45,7 @@ namespace OurOpenSource.Net
         /// Receive string.
         /// </summary>
         /// <param name="maxSize">
-        /// 接收最大字节数。设置为-1代表无限制。
+        /// 接收最大字节数。设置为`-1`代表无限制。
         /// Max size of receive package. Set `-1` for unlimited.
         /// </param>
         /// <param name="encoding">
@@ -78,12 +78,12 @@ namespace OurOpenSource.Net
         /// Receive data package.
         /// </summary>
         /// <param name="maxSize">
-        /// 接收最大字节数。设置为-1代表无限制。
+        /// 接收最大字节数。设置为`-1`代表无限制。
         /// Max size of receive package. Set `-1` for unlimited.
         /// </param>
         /// <returns>
-        /// 接收到的数据包。空包则为null。
-        /// Received data package. If received an empty package, it will return `null`.
+        /// 接收到的数据包。空包则为`<see langword="null"/>`。
+        /// Received data package. If received an empty package, it will return `<see langword="null"/>`.
         /// </returns>
         public abstract byte[] Receive(int maxSize = -1);
     }

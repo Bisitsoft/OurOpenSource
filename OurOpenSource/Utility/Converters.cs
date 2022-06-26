@@ -53,8 +53,8 @@ namespace OurOpenSource.Utility
         /// Converted bytes array.
         /// </returns>
         /// <remarks>
-        /// `hex`长度不应超过int.`MaxValue`的值。
-        /// The string `hex` length can't over `int.MaxValue`.
+        /// `<paramref name="hex"/>`长度不应超过`<see cref="int.MaxValue"/>`的值。
+        /// The string `<paramref name="hex"/>` length can't over `<see cref="int.MaxValue"/>`.
         /// 字符串最后为低位；最低位存在数组索引为`0`的位置。
         /// Low-order start from the back of the string hex. Low-order will be store at the bytes array where index is `0`.
         /// </remarks>
@@ -71,7 +71,7 @@ namespace OurOpenSource.Utility
 
                 for (i = length - 1; i >= 0; i--)
                 {
-                    r[length - (i + 1)] = (byte)(HexToByte(hex[i * 2 + 1]) | (HexToByte(hex[i * 2]) << 4));//low|high
+                    r[length - (i + 1)] = (byte)(HexToByte(hex[i * 2 + 1]) | (HexToByte(hex[i * 2]) << 4));// low|high
                 }
             }
             else
@@ -81,9 +81,9 @@ namespace OurOpenSource.Utility
                 
                 for (i = length - 1; i >= 1; i--)
                 {
-                    r[length - (i + 1)] = (byte)(HexToByte(hex[i * 2]) | (HexToByte(hex[i * 2 - 1]) << 4));//low|high
+                    r[length - (i + 1)] = (byte)(HexToByte(hex[i * 2]) | (HexToByte(hex[i * 2 - 1]) << 4));// low|high
                 }
-                r[length - 1] = (byte)HexToByte(hex[0]);//low|high
+                r[length - 1] = (byte)HexToByte(hex[0]);// low|high
             }
 
             return r;

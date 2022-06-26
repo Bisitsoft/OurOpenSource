@@ -46,14 +46,14 @@ namespace OurOpenSource.Security.Cryptography
         /// Encrypted cipher text.
         /// </returns>
         /// <remarks>
-        /// 注意，实际使用的是`pswdBytes`的SHA256哈希值。
-        /// Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
-        /// 默认使用`System.Text.Encoding.UTF8`作为解码器。
-        /// Use `System.Text.Encoding.UTF8` as default encoder.
+        /// 注意，实际使用的是`<paramref name="pswdBytes"/>`的SHA256哈希值。
+        /// Caution, in fact, it use SHA256 hash code of `<paramref name="pswdBytes"/>` instead of `<paramref name="pswdBytes"/>`.
+        /// 默认使用`<see cref="System.Text.Encoding.UTF8"/>`作为解码器。
+        /// Use `<see cref="System.Text.Encoding.UTF8"/>` as default encoder.
         /// </remarks>
         public byte[] EncryptString(string plainText, byte[] pswdBytes)
         {
-            byte[] inputByteArray = Encoding.UTF8.GetBytes(plainText);//得到需要加密的字节数组
+            byte[] inputByteArray = Encoding.UTF8.GetBytes(plainText);// 得到需要加密的字节数组 Get the byte array need to be encrypted.
             return Encrypt(inputByteArray, pswdBytes);
         }
         /// <summary>
@@ -73,14 +73,14 @@ namespace OurOpenSource.Security.Cryptography
         /// Encrypted data.
         /// </returns>
         /// <remarks>
-        /// 注意，实际使用的是`pswdBytes`的SHA256哈希值。
-        /// Caution, in fact, it use SHA256 hash code of `pswdBytes` instead of `pswdBytes`.
+        /// 注意，实际使用的是`<paramref name="pswdBytes"/>`的SHA256哈希值。
+        /// Caution, in fact, it use SHA256 hash code of `<paramref name="pswdBytes"/>` instead of `<paramref name="pswdBytes"/>`.
         /// </remarks>
         public byte[] Encrypt(byte[] plainData, byte[] pswdBytes)
         {
-            //分组加密算法
+            // 分组加密算法。 Block encryption algorithm.
             SymmetricAlgorithm des = System.Security.Cryptography.Rijndael.Create();
-            //设置密钥及密钥向量
+            // 设置密钥及密钥向量。 Set key and key vector.
             byte[] _pswd = ProcessPassword(pswdBytes);
             des.KeySize = _pswd.Length * 8;
             des.Key = _pswd;
@@ -89,7 +89,7 @@ namespace OurOpenSource.Security.Cryptography
             CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
             cs.Write(plainData, 0, plainData.Length);
             cs.FlushFinalBlock();
-            byte[] cipherBytes = ms.ToArray();//得到加密后的字节数组
+            byte[] cipherBytes = ms.ToArray();// 得到加密后的字节数组。 Get the encrypted byte array.
             cs.Close();
             ms.Close();
             return cipherBytes;
@@ -171,7 +171,7 @@ namespace OurOpenSource.Security.Cryptography
         /// </returns>
         private byte[] ProcessPassword(byte[] password)
         {
-            //不管128、92，直接256
+            // 不管128、92，直接256。 However, we use 256.
             return sha256.ComputeHash(password);
         }
         //}

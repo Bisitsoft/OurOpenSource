@@ -17,9 +17,7 @@ namespace OurOpenSource.Net
         /// 套接字。
         /// Socket.
         /// </summary>
-#pragma warning disable IDE0044 // 添加只读修饰符
         private Socket socket;
-#pragma warning restore IDE0044 // 添加只读修饰符
         /// <summary>
         /// 套接字。
         /// Socket.
@@ -27,8 +25,8 @@ namespace OurOpenSource.Net
         public Socket Socket { get { return socket; } }
 
         /// <summary>
-        /// 如果所占用套接字处于`Connected`或`IsBound`状态并且该实例的属性`DisposeSocketInDeconstruction`为`true`则会在析构时释放所用的套接字。
-        /// If it's using socket in `Connected` or `IsBound` status, and this instance's properity `DisposeSocketInDeconstruction` is `true`, it will dispose using socket in deconstruction.
+        /// 如果所占用套接字处于`<see cref="Socket.Connected"/>`或`<see cref="Socket.IsBound"/>`状态并且该实例的属性`<see cref="DisposeSocketInDeconstruction"/>`为`<see langword="true"/>`则会在析构时释放所用的套接字。
+        /// If it's using socket in `<see cref="Socket.Connected"/>` or `<see cref="Socket.IsBound"/>` status, and this instance's properity `<see cref="DisposeSocketInDeconstruction"/>` is `<see langword="true"/>`, it will dispose using socket in deconstruction.
         /// </summary>
         private bool DisposeSocketInDeconstruction { get; set; }
 
@@ -89,12 +87,12 @@ namespace OurOpenSource.Net
         /// <summary>
         /// 终止连接。
         /// Stop connection。
-        /// 如果该实例的属性`DisposeSocketInDeconstruction`为`true`则会释放所用的套接字。
-        /// If this instance's properity `DisposeSocketInDeconstruction` is `true`, it will dispose using socket.
+        /// 如果该实例的属性`<see cref="DisposeSocketInDeconstruction"/>`为`<see langword="true"/>`则会释放所用的套接字。
+        /// If this instance's properity `<see cref="DisposeSocketInDeconstruction"/>` is `<see langword="true"/>`, it will dispose using socket.
         /// </summary>
         public void Stop()
         {
-            //因为服务器socket没有连接所以调用以下两个函数会报错。
+            // 因为服务器socket没有连接所以调用以下两个函数会报错。 Because the server socket is not connected, calling the following two functions will result in an error.
             //socket.Shutdown(SocketShutdown.Both);
             //socket.Disconnect();
 
@@ -126,12 +124,12 @@ namespace OurOpenSource.Net
         /// <param name="maxSize">
         /// 接收数据的最大大小。
         /// Max size of receive data.
-        /// 你可以设置任意值，包括负数。但是-1代表无限大。
+        /// 你可以设置任意值，包括负数。但是`-1`代表无限大。
         /// You can set any value, including negative. But `-1` representing unlimit.
         /// </param>
         /// <returns>
-        /// 接收到的数据。如果是空包，则返回`null`。
-        /// Received data. If it's an empty package, it will return `null`.
+        /// 接收到的数据。如果是空包，则返回`<see langword="null"/>`。
+        /// Received data. If it's an empty package, it will return `<see langword="null"/>`.
         /// </returns>
         public override byte[] Receive(int maxSize = -1)
         {
@@ -140,7 +138,7 @@ namespace OurOpenSource.Net
             //    throw new InvalidOperationException("Can't recive any data when the maxSize is 0.");
             //}
 
-            //接收数据包大小值
+            // 接收数据包大小值。 Received package size.
             byte[] temp = BitConverter.GetBytes(0);
             socket.Receive(temp, 0, temp.Length, SocketFlags.None, out SocketError error);
             if (error != SocketError.Success)
@@ -161,11 +159,11 @@ namespace OurOpenSource.Net
             }
             if (length == 0)
             {
-                //一个空包
+                // 一个空包。 A null package.
                 return null;
             }
 
-            //接收数据包
+            // 接收数据包。 Receive Package.
             temp = new byte[length];
             socket.Receive(temp, 0, temp.Length, SocketFlags.None, out error);
             if (error != SocketError.Success)

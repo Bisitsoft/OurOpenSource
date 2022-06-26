@@ -6,8 +6,8 @@ using System.Text;
 namespace OurOpenSource.Security.Cryptography
 {
     /// <summary>
-    /// 利用`System.Security.Cryptography.RNGCryptoServiceProvider`生成随机数的方法。
-    /// Method of using `System.Security.Cryptography.RNGCryptoServiceProvider` generate random number.
+    /// 利用`<see cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>`生成随机数的方法。
+    /// Method of using `<see cref="System.Security.Cryptography.RNGCryptoServiceProvider"/>` generate random number.
     /// </summary>
     public class RandomMethod_RNGCryptoServiceProvider : IRandomMethod
     {
@@ -35,8 +35,8 @@ namespace OurOpenSource.Security.Cryptography
             throw new InvalidOperationException("Needn't seed.");
         }
         /// <summary>
-        /// 获取一个随机的整形。
-        /// Get one random `Int32` number.
+        /// 获取一个随机的`<see cref="Int32"/>`。
+        /// Get one random `<see cref="Int32"/>` number.
         /// </summary>
         /// <param name="minValue">
         /// 最小值。
@@ -47,8 +47,8 @@ namespace OurOpenSource.Security.Cryptography
         /// Max value.
         /// </param>
         /// <returns>
-        /// 一个随机的整形(Int32.MinValue~Int32.MaxValue)。
-        /// One random `Int32` number(Int32.MinValue~Int32.MaxValue).
+        /// 一个随机的`<see cref="Int32"/>`(`<see cref="Int32.MinValue"/>`~`<see cref="Int32.MaxValue"/>`)。
+        /// One random `<see cref="Int32"/>` number(`<see cref="Int32.MinValue"/>`~`<see cref="Int32.MaxValue"/>`).
         /// </returns>
         public int GetInt(int minValue, int maxValue)
         {
@@ -101,8 +101,8 @@ namespace OurOpenSource.Security.Cryptography
         }
 
         /// <summary>
-        /// 构造RandomMethod_RNGCryptoServiceProvider。
-        /// Construct RandomMethod_RNGCryptoServiceProvider.
+        /// 构造`<see cref="RandomMethod_RNGCryptoServiceProvider"/>`。
+        /// Construct `<see cref="RandomMethod_RNGCryptoServiceProvider"/>`.
         /// </summary>
         public RandomMethod_RNGCryptoServiceProvider()
         {

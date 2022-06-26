@@ -23,12 +23,12 @@ namespace OurOpenSource.Utility
         /// A byte array for compare.
         /// </param>
         /// <returns>
-        /// 如果x与y相等则返回0；
-        /// if `x` as same as `y`, it will return 0;
-        /// 如果`x`大于`y`，则返回一个大于0的值；
-        /// if `x` is greater than `y`, it will return a value be greater than 0;
-        /// 如果`x`小于`y`，则返回一个小于0的值。
-        /// if `x` is less than `y`, it will return a value be less than 0.
+        /// 如果`<paramref name="x"/>`与`<paramref name="y"/>相等则返回0；
+        /// if `<paramref name="x"/>` as same as `<paramref name="y"/>`, it will return `0`;
+        /// 如果`<paramref name="x"/>`大于`<paramref name="y"/>`，则返回一个大于`0`的值；
+        /// if `<paramref name="x"/>` is greater than `<paramref name="y"/>`, it will return a value be greater than `0`;
+        /// 如果`<paramref name="x"/>`小于`<paramref name="y"/>`，则返回一个小于`0`的值。
+        /// if `<paramref name="x"/>` is less than `<paramref name="y"/>`, it will return a value be less than `0`.
         /// </returns>
         /// <remarks>
         /// 如果你想要通过填充短一些的字节数组来进行比较，请搞清楚他们的字节序。
