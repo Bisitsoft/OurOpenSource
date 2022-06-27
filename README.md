@@ -115,7 +115,7 @@ All of below could donwload form nuget.
         <th rowspan="1"><div style="width:120px">Namespaces</div></th>
         <th rowspan="1"><div style="width:220px">Functions</div></th>
         <th rowspan="1"><div style="width:220px">Remarks</div></th>
-        <th rowspan="1"><div style="width:130px">Addition References</div></th>
+        <th rowspan="1"><div style="width:130px">Additional References</div></th>
     </tr>
     <tr align="left">
         <td rowspan="2"><div style="width:120px">OurOpenSource</div></td>
