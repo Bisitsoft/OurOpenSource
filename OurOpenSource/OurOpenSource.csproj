@@ -27,10 +27,15 @@ Official website: https://www.ourorangenet.com/wiki/index.php/OurOpenSource .</P
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utility\FkPath.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="Utility\FkPath.cs" />
   </ItemGroup>
 
 </Project>
