@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733333 67.733333"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="OurOpenSource_20220719.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     width="256px"
+     inkscape:zoom="2.9611953"
+     inkscape:cx="158.38199"
+     inkscape:cy="126.30035"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffb000;stroke-width:0.264583;fill-opacity:1"
+       id="rect994"
+       width="67.73333"
+       height="67.73333"
+       x="1.7801921e-06"
+       y="1.7801921e-06" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Microsoft YaHei UI';-inkscape-font-specification:'Microsoft YaHei UI';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="15.457581"
+       y="65.672386"
+       id="text1628"><tspan
+         sodipodi:role="line"
+         id="tspan1626"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         x="15.457581"
+         y="65.672386">OOS</tspan></text>
+    <path
+       id="path15538"
+       style="fill:#00ff00;fill-opacity:1;stroke-width:0.165178"
+       d="m 30.828287,39.671836 a 6.2429496,6.2429496 0 0 0 -6.24289,6.242893 6.2429496,6.2429496 0 0 0 0.0142,0.382296 6.2429496,6.2429496 0 0 0 0.09291,0.0036 6.2429496,6.2429496 0 0 0 6.242891,-6.242891 6.2429496,6.2429496 0 0 0 -0.01258,-0.384554 6.2429496,6.2429496 0 0 0 -0.09453,-0.0013 z" />
+  </g>
+</svg>
